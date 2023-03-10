@@ -13,6 +13,7 @@ export const Kbsb = () => {
 					<li>search.kbsb</li>
 					<li>kaboomshebang</li>
 					<li>github, twitter, etc</li>
+					<li>Links naar JS, Py, Docker tags, etc (met icons)</li>
 				</ul>
 				<p>Kbsb links and search widget</p>
 			</Box>

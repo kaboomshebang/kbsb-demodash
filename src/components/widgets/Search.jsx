@@ -16,6 +16,8 @@ export const Search = () => {
 				<p>Keyboard shortcuts</p>
 				<p>Deze moet helemaal bovenin</p>
 				<p>Volle breedte?</p>
+				<p>Een overlay met search results??</p>
+				<p>Open results in new-tabs</p>
 			</Box>
 		</Paper>
 	);
