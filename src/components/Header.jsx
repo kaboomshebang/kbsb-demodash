@@ -12,7 +12,8 @@ export const Header = () => {
 			</Box>
 			<Box px={4} pb={2}>
 				<Typography variant="h6" component="p" gutterBottom>
-					All your important links, shorcuts and widgets in an easy to use startpage.
+					All your important links, shortcuts and widgets in an easy to use startpage.
+					(Mag wel wat groter, volle breedte)
 				</Typography>
 			</Box>
 		</>
