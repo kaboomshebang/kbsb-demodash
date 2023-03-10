@@ -6,7 +6,7 @@ import { Chart } from '@/components/charts/Chart';
 // widgets
 import { Search } from '@/components/widgets/Search';
 import { Banking } from '@/components/widgets/Banking';
-import { Leisure } from '@/components/widgets/Leisure';
+import { Favorites } from '@/components/widgets/Favorites';
 import { Investments } from '@/components/widgets/Investments';
 
 // MUI components
@@ -22,17 +22,17 @@ function App() {
 			<Container>
 				<Header />
 				<Grid container spacing={2}>
-					<Grid xs={7}>
+					<Grid xs={12} md={7}>
 						<Banking />
 					</Grid>
-					<Grid xs={5}>
+					<Grid xs={12} sm={6} md={5}>
 						<Search />
 					</Grid>
 					<Grid xs={8}>
 						<Investments />
 					</Grid>
 					<Grid xs={8}>
-						<Leisure />
+						<Favorites />
 					</Grid>
 				</Grid>
 			</Container>
