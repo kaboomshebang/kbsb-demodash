@@ -2,20 +2,19 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-export const Investments = () => {
+export const Learning = () => {
 	return (
 		<Paper elevation={2}>
 			<Box p={2}>
 				<Typography variant="h6" component="h3">
-					Investments
+					Learning
 				</Typography>
 				<ul>
-					<li>apple</li>
-					<li>ibm</li>
-					<li>asml</li>
-					<li>ahold</li>
+					<li>DataCamp</li>
+					<li>Coursera</li>
+					<li>Duoling</li>
+					<li>Brilliant</li>
 				</ul>
-				<p>Charts of various stock prices</p>
 			</Box>
 		</Paper>
 	);

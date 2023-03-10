@@ -7,8 +7,15 @@ export const Search = () => {
 		<Paper elevation={2}>
 			<Box p={2}>
 				<Typography variant="h6" component="h3">
-					Search
+					Web search
 				</Typography>
+				<ul>
+					<li>web</li>
+					<li>youtube</li>
+				</ul>
+				<p>Keyboard shortcuts</p>
+				<p>Deze moet helemaal bovenin</p>
+				<p>Volle breedte?</p>
 			</Box>
 		</Paper>
 	);
