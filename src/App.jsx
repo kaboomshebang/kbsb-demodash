@@ -22,11 +22,11 @@ function App() {
 			<Container>
 				<Header />
 				<Grid container spacing={2}>
-					<Grid xs={8}>
-						<Search />
-					</Grid>
-					<Grid xs={4}>
+					<Grid xs={7}>
 						<Banking />
+					</Grid>
+					<Grid xs={5}>
+						<Search />
 					</Grid>
 					<Grid xs={8}>
 						<Investments />
