@@ -14,7 +14,6 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 
 // app styles
-import './App.css';
 
 function App() {
 	return (
@@ -37,7 +36,7 @@ function App() {
 					</Grid>
 				</Grid>
 			</Container>
-		</div>
+		</>
 	);
 }
 
