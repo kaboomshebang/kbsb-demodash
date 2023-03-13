@@ -10,6 +10,8 @@ export const Chat = () => {
 					ChatGPT Box
 				</Typography>
 				<p>Chat with ChatGPT</p>
+				<p>Paste your API key</p>
+				<input type="text" />
 			</Box>
 		</Paper>
 	);

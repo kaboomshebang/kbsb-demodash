@@ -9,7 +9,9 @@ export const Todo = () => {
 				<Typography variant="h6" component="h3">
 					Todo
 				</Typography>
+				<p>Uses JSON placeholder for data</p>
 				<ul>
+					<li>https://jsonplaceholder.typicode.com/todos/1</li>
 					<li>todo item</li>
 				</ul>
 			</Box>

@@ -2,21 +2,18 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-export const Sport = () => {
+export const Comments = () => {
 	return (
 		<Paper elevation={2}>
 			<Box p={2}>
 				<Typography variant="h6" component="h3">
-					Sport
+					Comments
 				</Typography>
+				<p>Uses JSON placeholder for data</p>
 				<ul>
-					<li>push-ups</li>
-					<li>squats</li>
-					<li>etc</li>
+					<li>https://jsonplaceholder.typicode.com/comments</li>
+					<li>todo item</li>
 				</ul>
-				<p>A widget with column charts?</p>
-				<p>Or pie charts?</p>
-				<p>https://www.balldontlie.io/home.html#introduction</p>
 			</Box>
 		</Paper>
 	);
