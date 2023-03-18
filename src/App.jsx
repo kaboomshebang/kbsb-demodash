@@ -9,6 +9,13 @@ import { Search } from '@/components/widgets/Search';
 import { Banking } from '@/components/widgets/Banking';
 import { Favorites } from '@/components/widgets/Favorites';
 import { Investments } from '@/components/widgets/Investments';
+import { Comments } from '@/components/widgets/Comments';
+import { Dev } from '@/components/widgets/Dev';
+import { Learning } from '@/components/widgets/Learning';
+import { Sport } from '@/components/widgets/Sport';
+import { Todo } from '@/components/widgets/Todo';
+import { WebClipper } from '@/components/widgets/WebClipper';
+import { Chat } from '@/components/widgets/Chat';
 
 // MUI components
 import Container from '@mui/material/Container';
@@ -37,6 +44,28 @@ function App() {
 					</Grid>
 					<Grid xs={8}>
 						<User />
+					</Grid>
+
+					<Grid xs={8}>
+						<Comments />
+					</Grid>
+					<Grid xs={8}>
+						<Chat />
+					</Grid>
+					<Grid xs={8}>
+						<Dev />
+					</Grid>
+					<Grid xs={8}>
+						<Learning />
+					</Grid>
+					<Grid xs={8}>
+						<Sport />
+					</Grid>
+					<Grid xs={8}>
+						<Todo />
+					</Grid>
+					<Grid xs={8}>
+						<WebClipper />
 					</Grid>
 				</Grid>
 			</Container>
