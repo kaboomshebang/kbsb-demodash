@@ -41,11 +41,11 @@ export const User = () => {
 				<Typography variant="h6" component="h3">
 					Show user information
 				</Typography>
-				<p>https://randomuser.me/api</p>
-				<p>Avatar</p>
-				<p>{user && user.gender}</p>
-				<p>This does not work, because a re-render triggers a statecahnge?</p>
-				<img src={user && user.picture.thumbnail} alt="" />
+				<p>[i]: https://randomuser.me/api</p>
+				<img src={user && user.picture.thumbnail} alt="Profile" />
+				<p>{user && Object.values(user.name).join(' ')}</p>
+				<p>{user && user.login.username}</p>
+				<p>{user && user.email}</p>
 				<button onClick={refetchHandler}>Fetch new user</button>
 			</Box>
 		</Paper>
