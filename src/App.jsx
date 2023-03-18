@@ -16,6 +16,7 @@ import { Sport } from '@/components/widgets/Sport';
 import { Todo } from '@/components/widgets/Todo';
 import { WebClipper } from '@/components/widgets/WebClipper';
 import { Chat } from '@/components/widgets/Chat';
+import { Kbsb } from '@/components/widgets/Kbsb';
 
 // MUI components
 import Container from '@mui/material/Container';
@@ -66,6 +67,9 @@ function App() {
 					</Grid>
 					<Grid xs={8}>
 						<WebClipper />
+					</Grid>
+					<Grid xs={8}>
+						<Kbsb />
 					</Grid>
 				</Grid>
 			</Container>
