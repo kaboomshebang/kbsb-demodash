@@ -11,7 +11,12 @@ export const Chat = () => {
 				</Typography>
 				<p>Chat with ChatGPT</p>
 				<p>Paste your API key</p>
-				<input type="text" />
+				<p>Not stored on</p>
+				<form action="">
+					<input type="text" />
+					<button>Paste</button>
+				</form>
+				<p>Can I connect to cGPT with oAuth?</p>
 			</Box>
 		</Paper>
 	);
