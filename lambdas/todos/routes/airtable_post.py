@@ -1,14 +1,15 @@
-# A Lambda that posts todos from the frontend to Airtable
+"""
+A function that posts todos from the demodash frontend to Airtable
+"""
+
 import os
 import json
 import boto3
+
 from pyairtable import Table
-from dotenv import load_dotenv
-
-load_dotenv()
 
 
-def lambda_handler(event, context=None):
+def post_at(event, context=None):
     body = json.loads(event["body"])
 
     api_key = os.getenv("AIRTABLE_API_KEY")
@@ -24,7 +25,3 @@ def lambda_handler(event, context=None):
         "headers": {"Content-Type": "application/json"},
         "body": json.dumps({"message": "Todo created", "airtable-response": res}),
     }
-
-
-event = {"body": json.dumps({"description": "test", "label": "Normal"})}
-lambda_handler(event)
