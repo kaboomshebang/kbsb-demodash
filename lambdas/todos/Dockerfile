@@ -9,4 +9,6 @@ RUN pip install -r requirements.txt
 # you don't need a venv in a container
 
 # Set the CMD to your handler (could also be done as a parameter override outside of the Dockerfile)
-CMD [ "app.lambda_handler" ]
+# make sure that the Lambda container use the Mangum handler
+# and that your local test environment uses the app:app FastAPI function
+CMD [ "app.handler" ]

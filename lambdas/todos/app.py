@@ -1,42 +1,53 @@
 import json
 
-# import requests
+from fastapi import FastAPI, Request
+from fastapi.encoders import jsonable_encoder
+from mangum import Mangum
+from dotenv import load_dotenv
+
+# load environment variables
+load_dotenv()
+
+# import routes
+from routes.airtable_post import post_at
+from routes.airtable_list import list_records
+
+app = FastAPI()
 
 
-def lambda_handler(event, context):
-    """Sample pure Lambda function
-
-    Parameters
-    ----------
-    event: dict, required
-        API Gateway Lambda Proxy Input Format
-
-        Event doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format
-
-    context: object, required
-        Lambda Context runtime methods and attributes
-
-        Context doc: https://docs.aws.amazon.com/lambda/latest/dg/python-context-object.html
-
-    Returns
-    ------
-    API Gateway Lambda Proxy Output Format: dict
-
-        Return doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
-    """
-
-    # try:
-    #     ip = requests.get("http://checkip.amazonaws.com/")
-    # except requests.RequestException as e:
-    #     # Send some context about this error to Lambda Logs
-    #     print(e)
-
-    #     raise e
-
+@app.get("/")
+def root():
     return {
         "statusCode": 200,
-        "body": json.dumps({
-            "message": "hello world",
-            # "location": ip.text.replace("\n", "")
-        }),
+        "body": json.dumps(
+            {
+                "message": "Hello todo!",
+            }
+        ),
     }
+
+
+@app.post("/post_at")
+def post_at_handler():
+    event = {"body": json.dumps({"description": "test", "label": "Normal"})}
+    res = post_at(event)
+
+    return res
+
+
+# TODO: refactor functions so that the decorator only works on the list_records function
+#! OR, move the decorator to the function in the routes folder
+@app.get("/post_at")
+def list_records_handler():
+    list_records()
+    return
+
+
+@app.post("/hello")
+async def hello(request: Request):
+    body = await request.body()
+
+    return jsonable_encoder({"statusCode": 200, "body": body})
+
+
+handler = Mangum(app)
