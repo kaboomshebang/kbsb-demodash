@@ -13,3 +13,9 @@ pip freeze
 # run pytest tests
 pytest
 ```
+
+## FastAPI documentation page
+
+```
+http://100.111.214.8:8000/docs
+```
