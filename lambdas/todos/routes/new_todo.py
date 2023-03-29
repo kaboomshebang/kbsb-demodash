@@ -2,19 +2,22 @@
 A function that posts todos from the demodash frontend to Airtable
 """
 
-import os
 import json
-import boto3
+from fastapi import APIRouter, Request
+from fastapi.encoders import jsonable_encoder
 
 from pyairtable import Table
+from lib.env import api_key, base_id, table_name
+
+router = APIRouter()
 
 
-def post_at(event, context=None):
+@router.get("/new_todo")
+async def new_todo(request: Request):
+    body = await request.body()
+    event = {"body": json.dumps({"description": "test33", "label": "Normal"})}
     body = json.loads(event["body"])
 
-    api_key = os.getenv("AIRTABLE_API_KEY")
-    base_id = os.getenv("AIRTABLE_BASE_ID")
-    table_name = os.getenv("AIRTABLE_TABLE_NAME")
     table = Table(api_key, base_id, table_name)
 
     # add todo
