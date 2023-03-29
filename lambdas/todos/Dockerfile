@@ -2,7 +2,8 @@ FROM public.ecr.aws/lambda/python:3.9
 
 # Copy function code
 COPY requirements.txt ${LAMBDA_TASK_ROOT}
-COPY app.py ${LAMBDA_TASK_ROOT}
+# COPY app.py ${LAMBDA_TASK_ROOT}
+COPY . ${LAMBDA_TASK_ROOT}
 
 # install dependencies
 RUN pip install -r requirements.txt
