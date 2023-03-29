@@ -1,0 +1,16 @@
+# send API Gateway payload to the Lambda function
+
+curl -XGET "http://localhost:9000/2015-03-31/functions/function/invocations" -d '
+{
+  "version": "2.0",
+  "requestContext": {
+    "http": {
+      "method": "GET",
+      "path": "/new_todo",
+      "protocol": "HTTP/1.1",
+      "sourceIp": "192.0.2.1"
+    }
+  },
+  "body": "your content here"
+}
+'
