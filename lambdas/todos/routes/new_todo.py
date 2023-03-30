@@ -12,19 +12,24 @@ from lib.env import api_key, base_id, table_name
 router = APIRouter()
 
 
-@router.get("/new_todo")
+@router.post("/new_todo")
 async def new_todo(request: Request):
-    body = await request.body()
-    event = {"body": json.dumps({"description": "test33", "label": "Normal"})}
-    body = json.loads(event["body"])
+    req = await request.body()
+    body = json.loads(req)["body"]
 
-    table = Table(api_key, base_id, table_name)
+    try:
+        table = Table(api_key, base_id, table_name)
+        res = table.create(body)
+        msg = "todo created"
+    except Exception as e:
+        print("Airtable error:", e)
+        msg = "something went wrong, not your fault"
+        res = e.response.status_code
 
-    # add todo
-    res = table.create(body)
-
-    return {
-        "statusCode": 200,
-        "headers": {"Content-Type": "application/json"},
-        "body": json.dumps({"message": "Todo created", "airtable-response": res}),
-    }
+    return jsonable_encoder(
+        {
+            "statusCode": 200,
+            "headers": {"Content-Type": "application/json"},
+            "body": {"message": msg, "airtable-response": res},
+        }
+    )
