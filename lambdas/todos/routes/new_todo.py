@@ -19,8 +19,8 @@ async def new_todo(request: Request):
 
     try:
         table = Table(api_key, base_id, table_name)
-        res = table.create(body)
         msg = "todo created"
+        res = table.create(body)
     except Exception as e:
         print("Airtable error:", e)
         msg = "something went wrong, not your fault"
@@ -28,8 +28,6 @@ async def new_todo(request: Request):
 
     return jsonable_encoder(
         {
-            "statusCode": 200,
-            "headers": {"Content-Type": "application/json"},
             "body": {"message": msg, "airtable-response": res},
         }
     )
