@@ -23,7 +23,7 @@ build:
 	docker build -t kbsb-demodash-todos .
 
 run:
-	docker run -p 9000:8080 kbsb-demodash-todos
+	docker run --env-file .env -p 9000:8080 kbsb-demodash-todos
 
 shell:
 	docker run -it --entrypoint /bin/bash -p 9000:8080 kbsb-demodash-todos
