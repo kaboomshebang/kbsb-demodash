@@ -1,6 +1,4 @@
-import json
-from fastapi import FastAPI, Request
-from fastapi.encoders import jsonable_encoder
+from fastapi import FastAPI
 from mangum import Mangum
 from routes import new_todo, list_todos
 
@@ -12,8 +10,7 @@ app.include_router(list_todos.router)
 @app.get("/")
 def root():
     return {
-        "statusCode": 200,
-        "body": json.dumps({"message": "Hello todo!"}),
+        "body": {"message": "Hello todo!"},
     }
 
 

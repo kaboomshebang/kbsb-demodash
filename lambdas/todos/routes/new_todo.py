@@ -56,8 +56,6 @@ async def new_todo(request: Request):
         res = e.response.status_code
 
     if todo:
-        return jsonable_encoder(
-            {
-                "body": {"message": msg, "airtable-response": res},
-            }
-        )
+        return {
+            "body": {"message": msg, "airtable-response": res},
+        }
