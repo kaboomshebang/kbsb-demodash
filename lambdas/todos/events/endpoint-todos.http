@@ -1,8 +1,8 @@
 # production
-@URL = https://jchv4b5lpu5gea3lkowr5g2bei0tpnsl.lambda-url.eu-central-1.on.aws
+# @URL = https://jchv4b5lpu5gea3lkowr5g2bei0tpnsl.lambda-url.eu-central-1.on.aws
 
 # local dev server
-# @URL = http://100.111.214.8:8000
+@URL = http://100.111.214.8:8000
 
 # https://github.com/Huachao/vscode-restclient/blob/master/README.md#variables
 
@@ -20,12 +20,13 @@ content-type: application/json
 
 ### endpoint: /new_todo
 
-GET {{URL}}/new_todo HTTP/1.1.
+POST {{URL}}/new_todo HTTP/1.1.
 content-type: application/json
 
 {
-    "name": "sample",
-    "time": "Wed, 21 Oct 2015 18:27:50 GMT",
-    "msg": "test",
-    "httpMethod": "GET"
+    "body": {
+        "description": "Desccc1",
+        "label": "Normal",
+        "done": true
+    }
 }
