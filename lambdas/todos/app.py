@@ -17,11 +17,4 @@ def root():
     }
 
 
-@app.post("/hello")
-async def hello(request: Request):
-    body = await request.body()
-
-    return jsonable_encoder({"statusCode": 200, "body": body})
-
-
 handler = Mangum(app)
