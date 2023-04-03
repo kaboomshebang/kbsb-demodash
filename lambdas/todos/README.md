@@ -2,6 +2,11 @@
 
 Post todos to Airtable.
 
+Requirements:
+- Python v3.9
+
+> 📌 Make sure to set the AWS_PROFILE environment variable if you want to use the Makefile Docker targets!
+
 ```sh
 pip install pytest
 pip freeze > requirements.txt
@@ -12,6 +17,13 @@ pip freeze -r requirements.txt
 pip freeze
 # run pytest tests
 pytest
+```
+
+```sh
+# setup Python environment
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
 ## FastAPI documentation page

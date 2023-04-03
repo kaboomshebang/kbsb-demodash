@@ -38,7 +38,6 @@ lambda:
 	aws lambda update-function-code \
 	--region "eu-central-1" \
 	--function-name "todos" \
-    --image-uri "011809624525.dkr.ecr.eu-central-1.amazonaws.com/kbsb-demodash:latest" \
-	--profile admin
+    --image-uri "011809624525.dkr.ecr.eu-central-1.amazonaws.com/kbsb-demodash:latest"
 
 update: build tag push lambda
