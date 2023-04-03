@@ -4,6 +4,15 @@ import { useState, useEffect } from 'react';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
+import Alert from '@mui/material/Alert';
+import Chip from '@mui/material/Chip';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+
+// icons
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import EmailIcon from '@mui/icons-material/Email';
 
 // RandomUser.me API
 const endPoint = 'https://randomuser.me/api';
@@ -38,15 +47,23 @@ export const User = () => {
 	return (
 		<Paper elevation={2} sx={{ height: '100%' }}>
 			<Box p={2}>
-				<Typography variant="h6" component="h3">
-					Show user information
-				</Typography>
-				<p>[i]: https://randomuser.me/api</p>
-				<img src={user && user.picture.thumbnail} alt="Profile" />
-				<p>{user && Object.values(user.name).join(' ')}</p>
-				<p>{user && user.login.username}</p>
-				<p>{user && user.email}</p>
-				<button onClick={refetchHandler}>Fetch new user</button>
+				<Stack sx={{ width: '100%' }} spacing={2}>
+					<Typography variant="h6" component="h3">
+						User account
+					</Typography>
+					<Alert severity="info">Fetch a user from randomuser.me/api</Alert>
+					<Box>
+						<Avatar alt="User" src={user && user.picture.thumbnail} />
+						<Typography variant="h6" component="h6">
+							{user && Object.values(user.name).join(' ')}
+						</Typography>
+					</Box>
+					<Chip icon={<AccountCircleIcon />} label={user && user.login.username} />
+					<Chip icon={<EmailIcon />} label={user && user.email} variant="outlined" />
+					<Button onClick={refetchHandler} variant="contained">
+						Fetch new user
+					</Button>
+				</Stack>
 			</Box>
 		</Paper>
 	);
