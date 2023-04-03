@@ -16,9 +16,9 @@ router = APIRouter()
 
 
 class Label(Enum):
-    PRIO = "Prio"
-    NORM = "Normal"
-    LONG = "Longterm"
+    PRIO = "prio"
+    NORM = "normal"
+    LONG = "longterm"
 
 
 class Todo(BaseModel):
@@ -36,10 +36,11 @@ class Todo(BaseModel):
 @router.post("/new_todo")
 async def new_todo(request: Request):
     req = await request.body()
+    print(req)
 
     # verify that the request is valid JSON
     try:
-        body = json.loads(req)["body"]
+        body = json.loads(req)
     except Exception as e:
         return jsonable_encoder({"request error": e.msg})
 
