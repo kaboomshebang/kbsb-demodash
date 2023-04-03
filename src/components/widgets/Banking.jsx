@@ -101,11 +101,6 @@ export const Banking = () => {
 					onRowsPerPageChange={handleChangeRowsPerPage}
 				/>
 			</Box>
-			<p>
-				Connect with the Bunq Sandbox
-				<br />
-				https://beta.doc.bunq.com/basics/sandbox
-			</p>
 		</Paper>
 	);
 };

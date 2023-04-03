@@ -46,7 +46,7 @@ export const Comments = () => {
 					Comments
 				</Typography>
 				<p>
-					[i]: Uses JSON placeholder for data:
+					[i]: Fetches data from JSON placeholder:
 					https://jsonplaceholder.typicode.com/comments
 				</p>
 				<ul>
