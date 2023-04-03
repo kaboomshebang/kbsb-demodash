@@ -1,11 +1,16 @@
 import { FormContainer, TextFieldElement } from 'react-hook-form-mui';
-import { SwitchElement } from 'react-hook-form-mui';
-import { SelectElement } from 'react-hook-form-mui';
+import { SwitchElement, SelectElement } from 'react-hook-form-mui';
 
+import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+
+// icons
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 let endpoint;
 if (process.env.NODE_ENV === 'development') {
@@ -30,7 +35,7 @@ const AddTodoForm = () => {
 
 	return (
 		<FormContainer defaultValues={{ label: 'normal' }} onSuccess={submitHandler}>
-			<TextFieldElement name="description" label="Description" required fullWidth />
+			<TextFieldElement name="description" label="Todo description" required fullWidth />
 			<Box display="flex" gap={2}>
 				<SelectElement
 					margin="normal"
@@ -65,11 +70,29 @@ export const Todo = () => {
 	return (
 		<Paper elevation={2}>
 			<Box p={2}>
-				<Typography variant="h6" component="h3">
-					Add todo
-				</Typography>
-				<AddTodoForm />
+				<Stack sx={{ width: '100%' }} spacing={2}>
+					<Typography variant="h6" component="h3">
+						Add todo
+					</Typography>
+					<Alert severity="info">
+						Fetch an AWS Lambda Python function that stores todos in Airtable.
+					</Alert>
+					<AddTodoForm />
+					<Link
+						href="https://airtable.com/shrD9ve8XLZgBF29H/tbliCgx0zHmpn9SaI"
+						sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<OpenInNewIcon fontSize="small" />
+						Open Airtable base in new window
+					</Link>
+					<Alert severity="warning">
+						Note: reload the Airtable page to refresh the data.
+					</Alert>
+				</Stack>
 			</Box>
 		</Paper>
 	);
+	c;
 };
