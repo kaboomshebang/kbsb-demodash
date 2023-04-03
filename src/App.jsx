@@ -5,18 +5,11 @@ import { Chart } from '@/components/charts/Chart';
 
 // widgets
 import { User } from '@/components/widgets/User';
-import { Search } from '@/components/widgets/Search';
 import { Banking } from '@/components/widgets/Banking';
-import { Favorites } from '@/components/widgets/Favorites';
 import { Investments } from '@/components/widgets/Investments';
 import { Comments } from '@/components/widgets/Comments';
-import { Dev } from '@/components/widgets/Dev';
-import { Learning } from '@/components/widgets/Learning';
 import { Sport } from '@/components/widgets/Sport';
 import { Todo } from '@/components/widgets/Todo';
-import { WebClipper } from '@/components/widgets/WebClipper';
-import { Chat } from '@/components/widgets/Chat';
-import { Kbsb } from '@/components/widgets/Kbsb';
 
 // MUI components
 import Container from '@mui/material/Container';
@@ -31,45 +24,33 @@ function App() {
 			<Container>
 				<Header />
 				<Grid container spacing={2}>
-					<Grid xs={12} md={7}>
-						<Banking />
-					</Grid>
-					<Grid xs={12} sm={6} md={5}>
-						<Search />
-					</Grid>
-					<Grid xs={8}>
-						<Investments />
-					</Grid>
-					<Grid xs={8}>
-						<Favorites />
-					</Grid>
-					<Grid xs={8}>
-						<User />
-					</Grid>
-
-					<Grid xs={8}>
-						<Comments />
-					</Grid>
-					<Grid xs={8}>
-						<Chat />
-					</Grid>
-					<Grid xs={8}>
-						<Dev />
-					</Grid>
-					<Grid xs={8}>
-						<Learning />
-					</Grid>
-					<Grid xs={8}>
-						<Sport />
-					</Grid>
-					<Grid xs={8}>
+					<Grid xs={12} sm={6}>
 						<Todo />
 					</Grid>
-					<Grid xs={8}>
-						<WebClipper />
+					<Grid xs={12} sm={6}>
+						<User />
 					</Grid>
-					<Grid xs={8}>
-						<Kbsb />
+					<Grid xs={12}>
+						<Comments />
+					</Grid>
+					<Grid xs={12} sm={6}>
+						React Leaflet
+						<Sport />
+					</Grid>
+					<Grid xs={12} sm={6}>
+						Nivo
+						<Sport />
+					</Grid>
+					<Grid xs={12} sm={6}>
+						React Apex Charts
+						<Investments />
+					</Grid>
+					<Grid xs={12} sm={6}>
+						Recharts
+						<Investments />
+					</Grid>
+					<Grid xs={12}>
+						<Banking />
 					</Grid>
 				</Grid>
 			</Container>
