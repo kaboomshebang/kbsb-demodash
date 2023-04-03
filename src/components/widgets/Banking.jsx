@@ -3,6 +3,8 @@ import { useState } from 'react';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -50,9 +52,12 @@ export const Banking = () => {
 	return (
 		<Paper elevation={2}>
 			<Box p={2}>
-				<Typography variant="h6" component="h3">
-					Banking
-				</Typography>
+				<Stack spacing={2}>
+					<Typography variant="h6" component="h3">
+						Banking
+					</Typography>
+					<Alert severity="info">Static data in {`<Table>`} components</Alert>
+				</Stack>
 
 				<TableContainer sx={{ maxHeight: 440 }}>
 					<Table stickyHeader aria-label="sticky table">

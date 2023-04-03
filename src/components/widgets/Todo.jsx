@@ -59,7 +59,7 @@ const AddTodoForm = () => {
 				/>
 				<SwitchElement margin="normal" name="done" label="Done" />
 			</Box>
-			<Button variant="outlined" type="submit">
+			<Button variant="contained" type="submit">
 				Submit
 			</Button>
 		</FormContainer>
@@ -77,7 +77,6 @@ export const Todo = () => {
 					<Alert severity="info">
 						Fetch an AWS Lambda Python function that stores todos in Airtable.
 					</Alert>
-					<AddTodoForm />
 					<Link
 						href="https://airtable.com/shrD9ve8XLZgBF29H/tbliCgx0zHmpn9SaI"
 						sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
@@ -87,6 +86,7 @@ export const Todo = () => {
 						<OpenInNewIcon fontSize="small" />
 						Open Airtable base in new window
 					</Link>
+					<AddTodoForm />
 					<Alert severity="warning">
 						Note: reload the Airtable page to refresh the data.
 					</Alert>
