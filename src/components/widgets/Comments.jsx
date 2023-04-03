@@ -4,6 +4,17 @@ import { useState, useEffect } from 'react';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+import Chip from '@mui/material/Chip';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import FormControl from '@mui/material/FormControl';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
+// icons
+import FaceIcon from '@mui/icons-material/Face';
 
 const endpoint = 'https://jsonplaceholder.typicode.com/';
 
@@ -27,7 +38,6 @@ export const Comments = () => {
 		const res = await fetch(endpoint + 'posts', {
 			method: 'POST',
 			body: JSON.stringify({
-				title: formData.get('title'),
 				body: formData.get('comment'),
 				email: formData.get('email'),
 			}),
@@ -42,31 +52,64 @@ export const Comments = () => {
 	return (
 		<Paper elevation={2}>
 			<Box p={2}>
-				<Typography variant="h6" component="h3">
-					Comments
-				</Typography>
-				<p>
-					[i]: Fetches data from JSON placeholder:
-					https://jsonplaceholder.typicode.com/comments
-				</p>
-				<ul>
-					{data &&
-						data.map((el) => (
-							<li key={el.id * Math.random()}>
-								<span>{el.email}</span>
-								<p>{el.body}</p>
-							</li>
-						))}
-				</ul>
-				<div>
-					<p>Add a comment</p>
-					<form action="" onSubmit={submitHandler}>
-						<input type="text" name="title" id="title" placeholder="Comment title" />
-						<input type="email" name="email" id="email" placeholder="Email" />
-						<textarea name="comment" id="comment" placeholder="Your comment" />
-						<button type="submit">Submit</button>
-					</form>
-				</div>
+				<Stack sx={{ width: '100%' }} spacing={2}>
+					<Typography variant="h6" component="h3">
+						Comments
+					</Typography>
+					<Alert severity="info">
+						Fetches data from jsonplaceholder.typicode.com/comments
+					</Alert>
+
+					<List>
+						{data &&
+							data.map((el) => (
+								<ListItem
+									key={el.id * Math.random()}
+									sx={{
+										flexDirection: 'column',
+										alignItems: 'flex-start',
+										gap: 1,
+									}}
+								>
+									<Chip icon={<FaceIcon />} label={el.email} variant="outlined" />
+									<Typography component="span" variant="body2">
+										{el.body}
+									</Typography>
+								</ListItem>
+							))}
+					</List>
+					<Typography variant="h6" component="h3">
+						Leave a comment
+					</Typography>
+					<Alert severity="warning">Note: comments are not stored</Alert>
+					<FormControl
+						component="form"
+						onSubmit={submitHandler}
+						sx={{ display: 'flex', gap: 3 }}
+					>
+						<TextField
+							type="email"
+							name="email"
+							id="email"
+							label="Your email"
+							variant="outlined"
+							required
+						/>
+						<TextField
+							name="comment"
+							id="comment"
+							label="Your comment"
+							variant="outlined"
+							multiline
+							rows={4}
+							placeholder="What's on your mind.."
+							required
+						/>
+						<Button type="submit" variant="outlined">
+							Add comment to list
+						</Button>
+					</FormControl>
+				</Stack>
 			</Box>
 		</Paper>
 	);
