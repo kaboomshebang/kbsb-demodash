@@ -7,8 +7,7 @@ import Typography from '@mui/material/Typography';
 export const TopBar = () => {
 	return (
 		<AppBar position="static">
-			<Typography variant="h5">
-				<img src={logo} alt="Logo" />
+			<Typography my={2} mx={4} variant="h5" component="h1">
 				kbsb-demodash
 			</Typography>
 		</AppBar>

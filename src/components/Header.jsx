@@ -5,15 +5,15 @@ import Box from '@mui/material/Box';
 export const Header = () => {
 	return (
 		<>
-			<Box px={4} py={2} pt={8}>
-				<Typography variant="h4" component="h1" gutterBottom>
-					Your daily dasboard
+			<Box px={2} py={8}>
+				<Typography variant="h6" component="h2" gutterBottom>
+					A React.js + MUI dashboard built with:
 				</Typography>
-			</Box>
-			<Box px={4} pb={2}>
-				<Typography variant="h6" component="p" gutterBottom>
-					All your important links, shortcuts and widgets in an easy to use startpage.
-					(Mag wel wat groter, volle breedte)
+				<Typography variant="body1" component="p" gutterBottom>
+					Python/FastAPI, AWS Lambda, Docker, Airtable
+				</Typography>
+				<Typography variant="body1" component="p" gutterBottom>
+					Recharts, ApexCharts, Nivo, Leaflet.js, React-Hook-Form-MUI
 				</Typography>
 			</Box>
 		</>
