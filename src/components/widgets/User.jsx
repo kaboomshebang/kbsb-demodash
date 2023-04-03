@@ -36,7 +36,7 @@ export const User = () => {
 	console.log('RandomUser.me data', user);
 
 	return (
-		<Paper elevation={2}>
+		<Paper elevation={2} sx={{ height: '100%' }}>
 			<Box p={2}>
 				<Typography variant="h6" component="h3">
 					Show user information
