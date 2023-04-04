@@ -1,3 +1,6 @@
+dev:
+	pnpm run devtail
+
 # build for production
 
 build:
