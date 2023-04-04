@@ -40,7 +40,7 @@ function App() {
 					<Grid xs={12} sm={6}>
 						<Populations />
 					</Grid>
-					<Grid xs={12} sm={6}>
+					<Grid xs={12} md={6}>
 						<GDP />
 					</Grid>
 					<Grid xs={12} sm={6}>
