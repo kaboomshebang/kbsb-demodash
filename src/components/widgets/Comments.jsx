@@ -17,13 +17,14 @@ import TextField from '@mui/material/TextField';
 import FaceIcon from '@mui/icons-material/Face';
 
 const endpoint = 'https://jsonplaceholder.typicode.com/';
+const randomStart = Math.round(Math.random() * 10 + 1, 1);
 
 export const Comments = () => {
 	const [data, setData] = useState(null);
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const res = await fetch(endpoint + 'comments?_limit=3');
+			const res = await fetch(endpoint + `comments?_start=${randomStart}&_limit=3`);
 			const json = await res.json().catch(console.error);
 			setData(json);
 		};

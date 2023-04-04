@@ -58,8 +58,10 @@ export const User = () => {
 							{user && Object.values(user.name).join(' ')}
 						</Typography>
 					</Box>
-					<Chip icon={<AccountCircleIcon />} label={user && user.login.username} />
-					<Chip icon={<EmailIcon />} label={user && user.email} variant="outlined" />
+					<Stack direction={'row'} sx={{ flexWrap: 'wrap', gap: 2 }}>
+						<Chip icon={<AccountCircleIcon />} label={user && user.login.username} />
+						<Chip icon={<EmailIcon />} label={user && user.email} variant="outlined" />
+					</Stack>
 					<Button onClick={refetchHandler} variant="contained">
 						Fetch new user
 					</Button>

@@ -94,5 +94,4 @@ export const Todo = () => {
 			</Box>
 		</Paper>
 	);
-	c;
 };
