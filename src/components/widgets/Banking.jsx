@@ -34,6 +34,9 @@ const rows = [
 	createData('02', '21/03/2023', 'Github', 10),
 	createData('03', '19/03/2023', 'Netflix', 10),
 	createData('04', '12/03/2023', 'Albert Heijn', 98),
+	createData('05', '10/03/2023', 'Shell', 55),
+	createData('06', '29/02/2023', 'Jumbo', 98),
+	createData('07', '27/02/2023', 'Bar Italia', 98),
 ];
 
 export const Banking = () => {
@@ -56,7 +59,7 @@ export const Banking = () => {
 					<Typography variant="h6" component="h3">
 						Banking
 					</Typography>
-					<Alert severity="info">Static data in {`<Table>`} components</Alert>
+					<Alert severity="info">Static data in MUI {`<Table>`} component</Alert>
 				</Stack>
 
 				<TableContainer sx={{ maxHeight: 440 }}>

@@ -1,7 +1,6 @@
 // components
 import { TopBar } from '@/components/TopBar';
 import { Header } from '@/components/Header';
-import { Chart } from '@/components/charts/Chart';
 
 // widgets
 import { User } from '@/components/widgets/User';
@@ -18,14 +17,15 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 
 // app styles
+import { grey } from '@mui/material/colors';
 
-function App() {
+const App = () => {
 	return (
 		<>
 			<TopBar />
 			<Container>
 				<Header />
-				<Grid container spacing={4}>
+				<Grid container spacing={4} sx={{ backgroundColor: grey[100] }}>
 					<Grid xs={12} sm={6}>
 						<Todo />
 					</Grid>
@@ -54,6 +54,6 @@ function App() {
 			</Container>
 		</>
 	);
-}
+};
 
 export default App;

@@ -11,7 +11,7 @@ import gdp from '@/data/nld_gdp.json';
 
 export const GDP = () => {
 	return (
-		<Paper elevation={2}>
+		<Paper elevation={2} sx={{ height: '100%' }}>
 			<Box p={2}>
 				<Stack sx={{ width: '100%' }} spacing={2}>
 					<Typography variant="h6" component="h3">
