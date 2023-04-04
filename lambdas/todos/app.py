@@ -5,6 +5,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 origins = ["*"]
 
+#! set a variable so that the production origin is only demodash.kbsb.app
+
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
