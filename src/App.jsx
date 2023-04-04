@@ -11,6 +11,7 @@ import { Comments } from '@/components/widgets/Comments';
 import { Populations } from '@/components/widgets/Populations';
 import { Todo } from '@/components/widgets/Todo';
 import { Map } from '@/components/widgets/Map';
+import { MotorRacing } from '@/components/widgets/MotorRacing';
 
 // MUI components
 import Container from '@mui/material/Container';
@@ -43,9 +44,8 @@ function App() {
 					<Grid xs={12} md={6}>
 						<GDP />
 					</Grid>
-					<Grid xs={12} sm={6}>
-						Recharts
-						<Investments />
+					<Grid xs={12} md={6}>
+						<MotorRacing />
 					</Grid>
 					<Grid xs={12}>
 						<Banking />
