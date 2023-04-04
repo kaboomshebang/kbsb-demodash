@@ -1,0 +1,62 @@
+[
+	{
+		"name": "Amsterdam",
+		"latitude": 52.3667,
+		"longitude": 4.8945,
+		"population": 873555
+	},
+	{
+		"name": "Rotterdam",
+		"latitude": 51.9225,
+		"longitude": 4.4792,
+		"population": 651446
+	},
+	{
+		"name": "The Hague",
+		"latitude": 52.0705,
+		"longitude": 4.3007,
+		"population": 544732
+	},
+	{
+		"name": "Utrecht",
+		"latitude": 52.0917,
+		"longitude": 5.1222,
+		"population": 357179
+	},
+	{
+		"name": "Eindhoven",
+		"latitude": 51.4416,
+		"longitude": 5.4697,
+		"population": 233769
+	},
+	{
+		"name": "Tilburg",
+		"latitude": 51.5555,
+		"longitude": 5.0913,
+		"population": 219195
+	},
+	{
+		"name": "Groningen",
+		"latitude": 53.2194,
+		"longitude": 6.5665,
+		"population": 202085
+	},
+	{
+		"name": "Almere",
+		"latitude": 52.3508,
+		"longitude": 5.2642,
+		"population": 214379
+	},
+	{
+		"name": "Breda",
+		"latitude": 51.5831,
+		"longitude": 4.7764,
+		"population": 183873
+	},
+	{
+		"name": "Nijmegen",
+		"latitude": 51.8426,
+		"longitude": 5.838,
+		"population": 177521
+	}
+]
