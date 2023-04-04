@@ -8,7 +8,7 @@ import { User } from '@/components/widgets/User';
 import { Banking } from '@/components/widgets/Banking';
 import { Investments } from '@/components/widgets/Investments';
 import { Comments } from '@/components/widgets/Comments';
-import { Sport } from '@/components/widgets/Sport';
+import { Populations } from '@/components/widgets/Populations';
 import { Todo } from '@/components/widgets/Todo';
 import { Map } from '@/components/widgets/Map';
 
@@ -38,8 +38,7 @@ function App() {
 						<Map />
 					</Grid>
 					<Grid xs={12} sm={6}>
-						Nivo
-						<Sport />
+						<Populations />
 					</Grid>
 					<Grid xs={12} sm={6}>
 						React Apex Charts
