@@ -6,7 +6,7 @@ import { Chart } from '@/components/charts/Chart';
 // widgets
 import { User } from '@/components/widgets/User';
 import { Banking } from '@/components/widgets/Banking';
-import { Investments } from '@/components/widgets/Investments';
+import { GDP } from '@/components/widgets/GDP';
 import { Comments } from '@/components/widgets/Comments';
 import { Populations } from '@/components/widgets/Populations';
 import { Todo } from '@/components/widgets/Todo';
@@ -41,8 +41,7 @@ function App() {
 						<Populations />
 					</Grid>
 					<Grid xs={12} sm={6}>
-						React Apex Charts
-						<Investments />
+						<GDP />
 					</Grid>
 					<Grid xs={12} sm={6}>
 						Recharts
