@@ -10,6 +10,7 @@ import { Investments } from '@/components/widgets/Investments';
 import { Comments } from '@/components/widgets/Comments';
 import { Sport } from '@/components/widgets/Sport';
 import { Todo } from '@/components/widgets/Todo';
+import { Map } from '@/components/widgets/Map';
 
 // MUI components
 import Container from '@mui/material/Container';
@@ -34,8 +35,7 @@ function App() {
 						<Comments />
 					</Grid>
 					<Grid xs={12} sm={6}>
-						React Leaflet
-						<Sport />
+						<Map />
 					</Grid>
 					<Grid xs={12} sm={6}>
 						Nivo
