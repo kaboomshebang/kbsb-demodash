@@ -6,7 +6,7 @@ export const ApexChart = ({ data }) => {
 	const [state, setState] = useState({
 		series: [
 			{
-				name: 'GDP',
+				name: 'GDP growth ',
 				data: data,
 			},
 		],
@@ -31,7 +31,7 @@ export const ApexChart = ({ data }) => {
 				size: 1,
 			},
 			title: {
-				text: 'GDP The Netherlands',
+				text: 'NLD annual GDP growth (%)',
 				align: 'left',
 			},
 			stroke: {
@@ -49,10 +49,10 @@ export const ApexChart = ({ data }) => {
 			},
 			yaxis: {
 				labels: {
-					formatter: (val) => val.toFixed(1),
+					formatter: (val) => `${val.toFixed(1)}%`,
 				},
 				title: {
-					text: 'Growth',
+					text: 'Growth (%)',
 				},
 			},
 			xaxis: {
@@ -62,7 +62,7 @@ export const ApexChart = ({ data }) => {
 			tooltip: {
 				shared: false,
 				y: {
-					formatter: (val) => val.toFixed(2),
+					formatter: (val) => `${val.toFixed(2)}%`,
 				},
 				x: {
 					format: 'yyyy',
