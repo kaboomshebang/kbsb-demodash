@@ -88,7 +88,8 @@ export const Todo = () => {
 					</Link>
 					<AddTodoForm />
 					<Alert severity="warning">
-						Note: reload the Airtable page to refresh the data.
+						Note: reload the Airtable page to refresh the data. Check HTTP response in
+						the browser developer tools console.
 					</Alert>
 				</Stack>
 			</Box>

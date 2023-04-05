@@ -51,7 +51,9 @@ export const User = () => {
 					<Typography variant="h6" component="h3">
 						User account
 					</Typography>
-					<Alert severity="info">Fetch a user from randomuser.me/api</Alert>
+					<Alert severity="info">
+						Fetch a fake user account from <code>randomuser.me/api</code>.
+					</Alert>
 					<Box>
 						<Avatar alt="User" src={user && user.picture.thumbnail} />
 						<Typography variant="h6" component="h6">
