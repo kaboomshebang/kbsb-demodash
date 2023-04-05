@@ -25,11 +25,11 @@ const App = () => {
 			<TopBar />
 			<Container>
 				<Header />
-				<Grid container spacing={4} sx={{ backgroundColor: grey[100] }}>
-					<Grid xs={12} sm={6}>
+				<Grid container spacing={6} sx={{ backgroundColor: grey[100], borderRadius: 2 }}>
+					<Grid xs={12} md={6}>
 						<Todo />
 					</Grid>
-					<Grid xs={12} sm={6}>
+					<Grid xs={12} md={6}>
 						<User />
 					</Grid>
 					<Grid xs={12}>
