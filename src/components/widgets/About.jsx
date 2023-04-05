@@ -13,28 +13,43 @@ export const About = () => {
 			<Box p={2}>
 				<Stack sx={{ width: '100%' }} spacing={2}>
 					<Box>
-						<Typography variant="h7" component="h3" gutterBottom>
-							Tech
-						</Typography>
-						<Typography variant="body1" component="p" gutterBottom>
-							"Add todo" widget created with <strong>Python/FastAPI</strong>,{' '}
-							<strong>AWS Lambda</strong>, <strong>AWS CLI</strong>,{' '}
-							<strong>Docker</strong>, and Airtable.
-						</Typography>
 						<Typography variant="body2" component="p" gutterBottom>
-							The "User account" and "Comments" widgets fetch data from public APIs.
-						</Typography>
-						<Typography variant="body2" component="p" gutterBottom>
-							Other widgets created with Recharts, ApexCharts, Nivo, Leaflet.js, and
-							React-Hook-Form-MUI.
-						</Typography>
-						<Typography variant="body2" component="p" gutterBottom>
-							Uses <em>Github Actions</em> for <strong>CI/CD</strong>.
+							Documentation and source code repository on{' '}
+							<Link
+								href="https://www.github.com/kaboomshebang/kbsb-demodash"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								Github.com
+							</Link>
+							.
 						</Typography>
 					</Box>
 					<Box>
 						<Typography variant="h7" component="h3" gutterBottom>
-							Source files
+							Built with:
+						</Typography>
+						<Typography variant="body1" component="p" gutterBottom>
+							"Add todo" widget created with <strong>Python/FastAPI</strong>,{' '}
+							<strong>AWS Lambda</strong>, <strong>AWS CLI</strong>,{' '}
+							<strong>Docker</strong>, and Airtable. Uses Pytest to verify the
+							endpoint.
+						</Typography>
+						<Typography variant="body2" component="p" gutterBottom>
+							Furthermore: uses Nix shell, Makefiles, and Direnv for easy development.
+							Uses <em>Github Actions</em> for <strong>CI/CD</strong>.
+						</Typography>
+					</Box>
+					<Box>
+						<Typography variant="body2" component="p" gutterBottom>
+							Other widgets created with Recharts, ApexCharts, Nivo, Leaflet.js, and
+							React-Hook-Form-MUI.
+						</Typography>
+						<Typography variant="body2" component="p" gutterBottom></Typography>
+					</Box>
+					<Box>
+						<Typography variant="h7" component="h3" gutterBottom>
+							Data sources:
 						</Typography>
 						<Typography variant="body1" component="p" gutterBottom>
 							<Link
@@ -53,20 +68,6 @@ export const About = () => {
 								GDP
 							</Link>{' '}
 							data prepared/processed with <em>ObservableHQ</em> notebooks.
-						</Typography>
-						<Typography variant="body2" component="p" gutterBottom>
-							Randomuser.me and JSONplaceholder for public APIs.
-						</Typography>
-						<Typography variant="body2" component="p" gutterBottom>
-							Documentation and source code repository on{' '}
-							<Link
-								href="https://www.github.com/kaboomshebang/kbsb-demodash"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								Github.com
-							</Link>
-							.
 						</Typography>
 					</Box>
 				</Stack>

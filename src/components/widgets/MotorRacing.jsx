@@ -18,7 +18,7 @@ export const MotorRacing = () => {
 			<Box p={2}>
 				<Stack sx={{ width: '100%' }} spacing={2}>
 					<Typography variant="h6" component="h3">
-						Formula 1 accidents (per season)
+						F1 accidents/collisions (per season)
 					</Typography>
 					<Alert severity="info">
 						Created with Recharts. Read more about{' '}
