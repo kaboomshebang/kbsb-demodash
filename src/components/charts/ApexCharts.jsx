@@ -6,7 +6,7 @@ export const ApexChart = ({ data }) => {
 	const [state, setState] = useState({
 		series: [
 			{
-				name: 'GDP NL',
+				name: 'GDP',
 				data: data,
 			},
 		],
@@ -17,7 +17,7 @@ export const ApexChart = ({ data }) => {
 				height: 350,
 				zoom: {
 					type: 'x',
-					enabled: true,
+					enabled: false,
 					autoScaleYaxis: true,
 				},
 				toolbar: {
@@ -28,10 +28,10 @@ export const ApexChart = ({ data }) => {
 				enabled: false,
 			},
 			markers: {
-				size: 0,
+				size: 1,
 			},
 			title: {
-				text: 'GDP Netherlands',
+				text: 'GDP The Netherlands',
 				align: 'left',
 			},
 			stroke: {
@@ -49,9 +49,7 @@ export const ApexChart = ({ data }) => {
 			},
 			yaxis: {
 				labels: {
-					formatter: function (val) {
-						return (val / 1000000).toFixed(0);
-					},
+					formatter: (val) => val.toFixed(1),
 				},
 				title: {
 					text: 'Growth',
@@ -59,26 +57,21 @@ export const ApexChart = ({ data }) => {
 			},
 			xaxis: {
 				type: 'datetime',
+				tickPlacement: 'on',
 			},
 			tooltip: {
 				shared: false,
 				y: {
-					formatter: function (val) {
-						return (val / 1000000).toFixed(0);
-					},
+					formatter: (val) => val.toFixed(2),
+				},
+				x: {
+					format: 'yyyy',
 				},
 			},
 		},
 	});
 
 	return (
-		<div id="apex-chart">
-			<ReactApexChart
-				options={state.options}
-				series={state.series}
-				type="area"
-				height={350}
-			/>
-		</div>
+		<ReactApexChart options={state.options} series={state.series} type="area" height={350} />
 	);
 };
