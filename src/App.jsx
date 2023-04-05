@@ -7,6 +7,7 @@ import { User } from '@/components/widgets/User';
 import { Banking } from '@/components/widgets/Banking';
 import { GDP } from '@/components/widgets/GDP';
 import { Comments } from '@/components/widgets/Comments';
+import { About } from '@/components/widgets/About';
 import { Populations } from '@/components/widgets/Populations';
 import { Todo } from '@/components/widgets/Todo';
 import { Map } from '@/components/widgets/Map';
@@ -49,6 +50,13 @@ const App = () => {
 					</Grid>
 					<Grid xs={12}>
 						<Banking />
+					</Grid>
+				</Grid>
+			</Container>
+			<Container>
+				<Grid container spacing={4} sx={{ my: 8 }}>
+					<Grid xs={12}>
+						<About />
 					</Grid>
 				</Grid>
 			</Container>
