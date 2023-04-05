@@ -30,13 +30,33 @@ function createData(id, date, description, amount) {
 }
 
 const rows = [
-	createData('01', '22/03/2023', 'Bol.com', 100),
-	createData('02', '21/03/2023', 'Github', 10),
-	createData('03', '19/03/2023', 'Netflix', 10),
-	createData('04', '12/03/2023', 'Albert Heijn', 98),
-	createData('05', '10/03/2023', 'Shell', 55),
-	createData('06', '29/02/2023', 'Jumbo', 98),
-	createData('07', '27/02/2023', 'Bar Italia', 98),
+	createData('01', '22/03/2023', 'Bol.com 3457-12-21-ONLNRT', '€ 100.00'),
+	createData(
+		'02',
+		'21/03/2023',
+		'Gihub 2345-01-01-SFTWRDV - SOFTWARE DEVELOPMENT TOOLS',
+		'€ 10.00'
+	),
+	createData(
+		'03',
+		'19/03/2023',
+		'NETFLIX 9021-08-15-VIDSTRM - Video streaming service',
+		'€ 10.00'
+	),
+	createData('04', '12/03/2023', 'AH N.V. 2022-05-31-5789 57898028258GR', '€ 98.12'),
+	createData(
+		'05',
+		'10/03/2023',
+		'Royal Shell 9987-05-03-PTRLPRD - PETROLEUM PRODUCTS',
+		'€ 55.36'
+	),
+	createData('06', '29/02/2023', 'JUMBO 1234-11-02', '€ 98.74'),
+	createData(
+		'07',
+		'27/02/2023',
+		'Bar Italiano B.V. 7865-07-09-RESTCAF - RESTAURANT AND CAFE',
+		'€ 98.60'
+	),
 ];
 
 export const Banking = () => {
@@ -59,7 +79,7 @@ export const Banking = () => {
 					<Typography variant="h6" component="h3">
 						Banking
 					</Typography>
-					<Alert severity="info">Static data in MUI {`<Table>`} component</Alert>
+					<Alert severity="info">Static JSON data in MUI {`<Table>`} component</Alert>
 				</Stack>
 
 				<TableContainer sx={{ maxHeight: 440 }}>
