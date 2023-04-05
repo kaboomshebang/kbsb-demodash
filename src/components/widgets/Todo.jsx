@@ -75,7 +75,10 @@ export const Todo = () => {
 						Add todo
 					</Typography>
 					<Alert severity="info">
-						Fetch an AWS Lambda Python function that stores todos in Airtable.
+						Fetch an AWS function {`(Python/FastAPI)`} that stores data in Airtable.
+						Check out the{' '}
+						<Link href="https://www.github.com/kaboomshebang/kbsb-demodash">repo</Link>{' '}
+						for the Lambda source code.
 					</Alert>
 					<Link
 						href="https://airtable.com/shrD9ve8XLZgBF29H/tbliCgx0zHmpn9SaI"
