@@ -58,7 +58,8 @@ export const Comments = () => {
 						Comments
 					</Typography>
 					<Alert severity="info">
-						Fetches data from jsonplaceholder.typicode.com/comments
+						Fetches data from <code>jsonplaceholder.typicode.com/comments</code>,
+						refresh page for new data.
 					</Alert>
 
 					<List>
@@ -82,7 +83,7 @@ export const Comments = () => {
 					<Typography variant="h6" component="h3">
 						Leave a comment
 					</Typography>
-					<Alert severity="warning">Note: comments are not stored</Alert>
+					<Alert severity="warning">Note: comments are only stored locally.</Alert>
 					<FormControl
 						component="form"
 						onSubmit={submitHandler}
