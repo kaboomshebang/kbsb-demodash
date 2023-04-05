@@ -32,14 +32,14 @@ export const MotorRacing = () => {
 					</Alert>
 					<Rechart data={data} />
 					<Alert severity="warning">
-						Data extracted with an:{' '}
+						Data extracted with an{' '}
 						<Link
 							href="https://observablehq.com/d/889d93794bcfd6da"
 							target="_blank"
 							rel="noopener noreferrer"
 							sx={{ display: 'inline-flex', alignItems: 'center', gap: 1 }}
 						>
-							ObservableHQ notebook
+							ObservableHQ notebook.
 							<OpenInNewIcon fontSize="small" />
 						</Link>
 					</Alert>

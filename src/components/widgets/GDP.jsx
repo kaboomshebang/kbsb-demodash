@@ -25,14 +25,14 @@ export const GDP = () => {
 
 					<ApexChart data={gdp} />
 					<Alert severity="warning">
-						Data extracted with an:{' '}
+						Data extracted with an{' '}
 						<Link
 							href="https://observablehq.com/d/41d0060afaf5f92e"
 							target="_blank"
 							rel="noopener noreferrer"
 							sx={{ display: 'inline-flex', alignItems: 'center', gap: 1 }}
 						>
-							Observable notebook
+							Observable notebook.
 							<OpenInNewIcon fontSize="small" />
 						</Link>
 					</Alert>

@@ -79,7 +79,9 @@ export const Banking = () => {
 					<Typography variant="h6" component="h3">
 						Banking
 					</Typography>
-					<Alert severity="info">Static JSON data in MUI {`<Table>`} component</Alert>
+					<Alert severity="info">
+						Static JSON data in an MUI <code>{`<Table>`}</code> component.
+					</Alert>
 				</Stack>
 
 				<TableContainer sx={{ maxHeight: 440 }}>
