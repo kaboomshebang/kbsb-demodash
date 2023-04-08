@@ -1,22 +1,16 @@
 import os
+import json
 import requests
 import datetime
 
-# run test with:
-# `EXEC_ENV=PROD && pytest -k test_endpoints`
-# run `pytest -s` to incude stdout
-
 # ENV
-exec_env = os.getenv("EXEC_ENV")
-url = "http://100.111.214.8:8000"
-if exec_env == "DOCKER":
-    url = "http://localhost:9000/2015-03-31/functions/function/invocations"
-elif exec_env == "PROD":
-    url = "https://jchv4b5lpu5gea3lkowr5g2bei0tpnsl.lambda-url.eu-central-1.on.aws"
+URL = os.getenv("TEST_URL")
+DOCKER = os.getenv("TEST_DOCKER")
 
 # TIME
 now = datetime.datetime.now()
 time = now.strftime("%H_%M_%S")
+
 
 # DATA is compatible with the Lambda Emulator
 def data(METHOD, ENDPOINT, BODY):
@@ -36,9 +30,18 @@ def data(METHOD, ENDPOINT, BODY):
 
 def test_new_todo():
     endpoint = "/new_todo"
-    body = {"description": f"TEST_{time}", "label": "Normal", "done": True}
+    body = {"description": f"TEST_{time}", "label": "normal", "done": True}
 
-    res = requests.post(f"{url + endpoint}", json=data("POST", endpoint, body))
-    print("RESPONSE:", res.json())
+    if DOCKER:
+        # use a http request that is compatible with the Lambda Emulator (RIE)
+        res = requests.get(f"{URL}", json=data("POST", endpoint, json.dumps(body)))
+    else:
+        res = requests.post(f"{URL + endpoint}", json=body)
+
     assert res.status_code == 200
-    assert res.json()["body"]["message"] == "todo created"
+    print("RESPONSE:", res.json())
+
+    if not DOCKER:
+        # also verify the Airtable response
+        assert res.json()["body"]["message"] == "todo created"
+        print("MSG:", res.json()["body"]["message"])
