@@ -12,16 +12,13 @@ import Link from '@mui/material/Link';
 // icons
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
-let endpoint;
-if (process.env.NODE_ENV === 'development') {
-	endpoint = 'http://100.111.214.8:8000/new_todo';
-} else if (process.env.NODE_ENV === 'production') {
-	endpoint = 'https://jchv4b5lpu5gea3lkowr5g2bei0tpnsl.lambda-url.eu-central-1.on.aws/new_todo';
-}
+// ENV VARs
+const AIRTABLE = import.meta.env.VITE_AIRTABLE_BASE;
+const ENDPOINT = import.meta.env.VITE_ENDPOINT;
 
 const AddTodoForm = () => {
 	const submitHandler = async (data) => {
-		const res = await fetch(endpoint, {
+		const res = await fetch(ENDPOINT, {
 			method: 'POST',
 			body: JSON.stringify({
 				description: data.description,
@@ -81,7 +78,7 @@ export const Todo = () => {
 						for the Lambda source code.
 					</Alert>
 					<Link
-						href="https://airtable.com/shrD9ve8XLZgBF29H/tbliCgx0zHmpn9SaI"
+						href={AIRTABLE}
 						sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
 						target="_blank"
 						rel="noopener noreferrer"
