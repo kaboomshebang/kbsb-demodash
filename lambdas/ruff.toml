@@ -1,0 +1,4 @@
+extend-select = ["C4", "SIM", "TCH"]
+ignore = []
+show-fixes = true
+target-version = "py39"

@@ -1,34 +1,67 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+// components
+import { TopBar } from '@/components/TopBar';
+import { Header } from '@/components/Header';
 
-function App() {
-  const [count, setCount] = useState(0)
+// widgets
+import { User } from '@/components/widgets/User';
+import { Banking } from '@/components/widgets/Banking';
+import { GDP } from '@/components/widgets/GDP';
+import { Comments } from '@/components/widgets/Comments';
+import { About } from '@/components/widgets/About';
+import { Populations } from '@/components/widgets/Populations';
+import { Todo } from '@/components/widgets/Todo';
+import { Map } from '@/components/widgets/Map';
+import { MotorRacing } from '@/components/widgets/MotorRacing';
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
-}
+// MUI components
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Unstable_Grid2';
 
-export default App
+// app styles
+import { grey } from '@mui/material/colors';
+
+const App = () => {
+	return (
+		<>
+			<TopBar />
+			<Container>
+				<Header />
+				<Grid container spacing={6} sx={{ backgroundColor: grey[100], borderRadius: 2 }}>
+					<Grid xs={12} md={6}>
+						<Todo />
+					</Grid>
+					<Grid xs={12} md={6}>
+						<User />
+					</Grid>
+					<Grid xs={12}>
+						<Comments />
+					</Grid>
+					<Grid xs={12} sm={6}>
+						<Map />
+					</Grid>
+					<Grid xs={12} sm={6}>
+						<Populations />
+					</Grid>
+					<Grid xs={12} md={6}>
+						<GDP />
+					</Grid>
+					<Grid xs={12} md={6}>
+						<MotorRacing />
+					</Grid>
+					<Grid xs={12}>
+						<Banking />
+					</Grid>
+				</Grid>
+			</Container>
+			<Container>
+				<Grid container spacing={4} sx={{ my: 8 }}>
+					<Grid xs={12}>
+						<About />
+					</Grid>
+				</Grid>
+			</Container>
+		</>
+	);
+};
+
+export default App;

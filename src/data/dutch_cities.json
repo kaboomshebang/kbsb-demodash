@@ -1,0 +1,72 @@
+[
+	{
+		"id": "amsterdam",
+		"name": "Amsterdam",
+		"latitude": 52.3667,
+		"longitude": 4.8945,
+		"population": 873555
+	},
+	{
+		"id": "rotterdam",
+		"name": "Rotterdam",
+		"latitude": 51.9225,
+		"longitude": 4.4792,
+		"population": 651446
+	},
+	{
+		"id": "the-hague",
+		"name": "The Hague",
+		"latitude": 52.0705,
+		"longitude": 4.3007,
+		"population": 544732
+	},
+	{
+		"id": "utrecht",
+		"name": "Utrecht",
+		"latitude": 52.0917,
+		"longitude": 5.1222,
+		"population": 357179
+	},
+	{
+		"id": "eindhoven",
+		"name": "Eindhoven",
+		"latitude": 51.4416,
+		"longitude": 5.4697,
+		"population": 233769
+	},
+	{
+		"id": "tilburg",
+		"name": "Tilburg",
+		"latitude": 51.5555,
+		"longitude": 5.0913,
+		"population": 219195
+	},
+	{
+		"id": "groningen",
+		"name": "Groningen",
+		"latitude": 53.2194,
+		"longitude": 6.5665,
+		"population": 202085
+	},
+	{
+		"id": "almere",
+		"name": "Almere",
+		"latitude": 52.3508,
+		"longitude": 5.2642,
+		"population": 214379
+	},
+	{
+		"id": "breda",
+		"name": "Breda",
+		"latitude": 51.5831,
+		"longitude": 4.7764,
+		"population": 183873
+	},
+	{
+		"id": "nijmegen",
+		"name": "Nijmegen",
+		"latitude": 51.8426,
+		"longitude": 5.838,
+		"population": 177521
+	}
+]

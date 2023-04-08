@@ -1,0 +1,33 @@
+name: Deploy kbsb-demodash
+run-name: ${{ github.actor }} is deploying.
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  deploy-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: echo "make a node environment"
+      - run: echo "install pnpm"
+      - run: echo "build frontend"
+      - run: echo "copy dist folder to Scaleway"
+      - run: echo "purge Cloudflare cache"
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: |
+          echo "🍏 This job's status is ${{ job.status }}."
+  node-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: node --version
+      - run: npm --version

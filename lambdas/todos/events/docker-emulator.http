@@ -1,0 +1,20 @@
+# send API Gateway payload to the Lambda function
+
+# the Lambda emulator expects escaped JSON strings as body
+# this is not a problem when running locally with FastAPI
+# or when running in production
+
+curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '
+{
+  "version": "2.0",
+  "requestContext": {
+    "http": {
+      "method": "POST",
+      "path": "/new_todo",
+      "protocol": "HTTP/1.1",
+      "sourceIp": "192.0.2.1"
+    }
+  },
+  "body": "{\"description\": \"Lorem ipsum\",\"label\": \"normal\",\"done\": true}"
+}
+'
