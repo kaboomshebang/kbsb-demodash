@@ -11,9 +11,24 @@ function_name = todos
 
 ######## FASTAPI local development
 
+url_local = http://100.111.214.8:8000
+url_docker = http://localhost:9000/2015-03-31/functions/function/invocations
+url_lambda = https://jchv4b5lpu5gea3lkowr5g2bei0tpnsl.lambda-url.eu-central-1.on.aws
+
 # app:app refers to app.py app function
 api:
 	uvicorn --host 0.0.0.0 app:app --reload
+
+pytest-local:
+	export TEST_URL="$(url_local)" && pytest -s -k test_endpoints
+# `pytest -s` includes stdout
+
+pytest-docker:
+	echo "Test Docker Lambda emulator with curl. Check /events folder"
+	export TEST_URL="$(url_docker)"; export TEST_DOCKER=1 && pytest -s -k test_endpoints
+
+pytest-prod:
+	export TEST_URL="$(url_lambda)" && pytest -s -k test_endpoints
 
 ######## AWS Authentication
 
