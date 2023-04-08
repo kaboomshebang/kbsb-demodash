@@ -11,12 +11,7 @@
 GET {{URL}}/ HTTP/1.1.
 content-type: application/json
 
-{
-    "name": "sample",
-    "time": "Wed, 21 Oct 2015 18:27:50 GMT",
-    "msg": "test",
-    "httpMethod": "GET"
-}
+{}
 
 ### endpoint: /new_todo
 
@@ -24,9 +19,7 @@ POST {{URL}}/new_todo HTTP/1.1.
 content-type: application/json
 
 {
-    "body": {
-        "description": "Desccc1",
-        "label": "Normal",
-        "done": true
-    }
+  "description": "Lorem ipsum",
+  "label": "normal",
+  "done": true
 }
