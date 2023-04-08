@@ -24,7 +24,6 @@ pytest-local:
 # `pytest -s` includes stdout
 
 pytest-docker:
-	echo "Test Docker Lambda emulator with curl. Check /events folder"
 	export TEST_URL="$(url_docker)"; export TEST_DOCKER=1 && pytest -s -k test_endpoints
 
 pytest-prod:
