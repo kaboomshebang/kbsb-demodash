@@ -40,11 +40,11 @@ async def new_todo(request: Request):
 
     # verify that the request is valid JSON
     try:
-        body = json.loads(req)
+        data = json.loads(req)
     except Exception as e:
         return jsonable_encoder({"request error": e.msg})
 
-    todo = Todo(**body)
+    todo = Todo(**data)
 
     # send data to Airtable
     try:
