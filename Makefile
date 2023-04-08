@@ -1,9 +1,12 @@
+# run development server
+# accept traffic from all of the available interfaces (0.0.0.0)
 dev:
-	pnpm run devtail
+	pnpm run dev
 
-# build for production
-
+# export/build for production
 build:
-	export NODE_ENV=production && pnpm --version
+	pnpm run build
 
-# test the production export
+# preview/test the production export on 0.0.0.0:8000
+preview:
+	cd dist; python -m http.server
