@@ -35,7 +35,6 @@ jobs:
       - run: npm install -g pnpm
       - run: pnpm --version
       - run: make --version
-      - shell: bash
-        env:
+      - env:
           TEST_VAR: ${{ secrets.TEST }}
-        run: echo "$(TEST_VAR)"
+        run: echo "$TEST_VAR"
