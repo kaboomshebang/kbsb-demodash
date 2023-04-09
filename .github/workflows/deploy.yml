@@ -4,7 +4,7 @@ run-name: Deploying kbsb-demodash (${{ github.actor }}).
 on:
   push:
     branches:
-    - main
+    - fs-117-ci-cd
 
 jobs:
   deploy-frontend:
