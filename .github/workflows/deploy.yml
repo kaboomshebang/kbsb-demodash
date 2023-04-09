@@ -53,7 +53,7 @@ jobs:
             echo "bucket_acl = private" >> rclone.conf
       - name: Verify `rlcone.conf`
         run: cat rclone.conf
-      - name: set authentication ENV VARs
+      - name: Set bucket authentication
         run: export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID && export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
       - name: Copy `dist` folder to Scaleway bucket
         run: rclone sync --auto-confirm --config="rclone.conf" ./"$RCLONE_SYNC_DIR"/ "$RCLONE_REMOTE":"$RCLONE_BUCKET_NAME"
