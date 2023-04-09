@@ -4,7 +4,8 @@ run-name: Deploying kbsb-demodash (${{ github.actor }}).
 on:
   push:
     branches:
-    - fs-117-ci-cd
+    # - main
+    - fs-117-ci-cd # test CI/CD config
 
 jobs:
   deploy-frontend:
@@ -12,29 +13,29 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - run: echo "make a node environment"
-      - run: echo "install pnpm"
-      - run: echo "build frontend"
-      - run: echo "copy dist folder to Scaleway"
-      - run: echo "purge Cloudflare cache"
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "${{ github.workspace }}"
-      - run: |
-          echo "🍏 This job's status is ${{ job.status }}."
-  node-version:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Install Node
+        uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - run: node --version
-      - run: npm --version
-      - run: npm install -g pnpm
-      - run: pnpm --version
-      - run: make --version
+      - name: Install pnpm
+        run: npm install -g pnpm
+      - name: Build frontend
+        run: make build
+      - name: List dist folder
+        run: ls dist
+      - run: echo "copy dist folder to Scaleway"
+      - run: echo "purge Cloudflare cache"
       - env:
           TEST_VAR: ${{ secrets.TEST }}
         run: echo "$TEST_VAR"
+  deploy-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - run: python --version
+      - run: make --version
