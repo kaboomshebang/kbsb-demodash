@@ -25,6 +25,17 @@ jobs:
         run: make build
       - name: List dist folder
         run: ls dist
+      - name: Create Rclone configuration file
+        run: |
+            echo "[scw]" > rclone.conf
+            echo "type = s3" >> rclone.conf
+            echo "provider = Scaleway" >> rclone.conf
+            echo "env_auth = true" >> rclone.conf
+            echo "region = nl-ams" >> rclone.conf
+            echo "endpoint = s3.nl-ams.scw.cloud" >> rclone.conf
+            echo "acl = private" >> rclone.conf
+            echo "bucket_acl = private"" >> rclone.conf
+      - run: cat rclone.conf
       - run: echo "copy dist folder to Scaleway"
       - run: echo "purge Cloudflare cache"
       - env:
