@@ -26,6 +26,9 @@ const AddTodoForm = () => {
 				done: data.done,
 			}),
 			mode: 'cors',
+			headers: {
+				Origin: 'https://demodash.kbsb.app',
+			},
 		});
 		const json = await res.json().catch(console.error);
 		console.log(json);
