@@ -35,7 +35,7 @@ jobs:
         run: ls dist
 
       - name: Install Rclone
-        run: apt-get update && apt-get install rclone -y
+        run: sudo apt-get update && sudo apt-get install rclone -y
       - name: Verify `rclone`
         run: rclone --version
       - name: Create Rclone configuration file
