@@ -54,10 +54,7 @@ jobs:
       - name: Verify `rlcone.conf`
         run: cat rclone.conf
       - name: Copy `dist` folder to Scaleway bucket
-        run: rclone sync \
-          --auto-confirm \
-          --config="rclone.conf" \
-          ./"$RCLONE_SYNC_DIR"/ "$RCLONE_REMOTE":"$RCLONE_BUCKET_NAME"
+        run: rclone sync --auto-confirm --config="rclone.conf" ./"$RCLONE_SYNC_DIR"/ "$RCLONE_REMOTE":"$RCLONE_BUCKET_NAME"
 
       # Cloudflare cache
       - name: Purge Cloudflare cache
