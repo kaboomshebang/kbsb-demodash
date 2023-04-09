@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
+
+      # Build the Node project
       - name: Install Node
         uses: actions/setup-node@v3
         with:
@@ -34,6 +36,7 @@ jobs:
       - name: List dist folder
         run: ls dist
 
+      # Upload to Scaleway
       - name: Install Rclone
         run: sudo -v ; curl https://rclone.org/install.sh | sudo bash
       - name: Verify `rclone`
@@ -50,8 +53,13 @@ jobs:
             echo "bucket_acl = private" >> rclone.conf
       - name: Verify `rlcone.conf`
         run: cat rclone.conf
-      - name: Copy `dist` folder to Scaleway
-        run: echo "copy dist folder to Scaleway"
+      - name: Copy `dist` folder to Scaleway bucket
+        run: rclone sync \
+          --auto-confirm \
+          --config="rclone.conf" \
+          ./"$RCLONE_SYNC_DIR"/ "$RCLONE_REMOTE":"$RCLONE_BUCKET_NAME"
+
+      # Cloudflare cache
       - name: Purge Cloudflare cache
         run: echo "purge Cloudflare cache"
 
