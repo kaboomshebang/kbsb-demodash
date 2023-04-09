@@ -31,3 +31,5 @@ jobs:
           node-version: '18'
       - run: node --version
       - run: npm --version
+      - run: pnpm --version
+      - run: make --version
