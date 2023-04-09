@@ -25,6 +25,7 @@ const AddTodoForm = () => {
 				label: data.label,
 				done: data.done,
 			}),
+			mode: 'cors',
 		});
 		const json = await res.json().catch(console.error);
 		console.log(json);
