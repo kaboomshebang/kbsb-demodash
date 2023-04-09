@@ -10,6 +10,14 @@ on:
 jobs:
   deploy-frontend:
     runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
+      CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
+      RCLONE_SYNC_DIR: dist
+      RCLONE_REMOTE: scw
+      RCLONE_BUCKET_NAME: demodash.kbsb.app
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -17,7 +25,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - name: Install pnpm
+      - name: Install `pnpm`
         run: npm install -g pnpm
       - name: Install dependencies
         run: pnpm install
@@ -25,6 +33,11 @@ jobs:
         run: make build
       - name: List dist folder
         run: ls dist
+
+      - name: Install Rclone
+        run: apt-get update && apt-get install rclone -y
+      - name: Verify `rclone`
+        run: rclone --version
       - name: Create Rclone configuration file
         run: |
             echo "[scw]" > rclone.conf
@@ -35,12 +48,13 @@ jobs:
             echo "endpoint = s3.nl-ams.scw.cloud" >> rclone.conf
             echo "acl = private" >> rclone.conf
             echo "bucket_acl = private" >> rclone.conf
-      - run: cat rclone.conf
-      - run: echo "copy dist folder to Scaleway"
-      - run: echo "purge Cloudflare cache"
-      - env:
-          TEST_VAR: ${{ secrets.TEST }}
-        run: echo "$TEST_VAR"
+      - name: Verify `rlcone.conf`
+        run: cat rclone.conf
+      - name: Copy `dist` folder to Scaleway
+        run: echo "copy dist folder to Scaleway"
+      - name: Purge Cloudflare cache
+        run: echo "purge Cloudflare cache"
+
   deploy-backend:
     runs-on: ubuntu-latest
     steps:
