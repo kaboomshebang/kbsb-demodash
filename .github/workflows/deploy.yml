@@ -34,7 +34,7 @@ jobs:
             echo "region = nl-ams" >> rclone.conf
             echo "endpoint = s3.nl-ams.scw.cloud" >> rclone.conf
             echo "acl = private" >> rclone.conf
-            echo "bucket_acl = private"" >> rclone.conf
+            echo "bucket_acl = private" >> rclone.conf
       - run: cat rclone.conf
       - run: echo "copy dist folder to Scaleway"
       - run: echo "purge Cloudflare cache"
