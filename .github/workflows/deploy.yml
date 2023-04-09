@@ -19,6 +19,8 @@ jobs:
           node-version: '18'
       - name: Install pnpm
         run: npm install -g pnpm
+      - name: Install dependencies
+        run: pnpm install
       - name: Build frontend
         run: make build
       - name: List dist folder
