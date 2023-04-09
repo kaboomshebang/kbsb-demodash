@@ -1,5 +1,5 @@
 name: Deploy kbsb-demodash
-run-name: ${{ github.actor }} is deploying.
+run-name: Deploying kbsb-demodash (${{ github.actor }}).
 
 on:
   push:
@@ -20,6 +20,7 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - run: echo "${{ github.workspace }}"
       - run: |
           echo "🍏 This job's status is ${{ job.status }}."
   node-version:
@@ -34,3 +35,6 @@ jobs:
       - run: npm install -g pnpm
       - run: pnpm --version
       - run: make --version
+      - env:
+          TEST_VAR: ${{ secrets.TEST }}
+        run: echo "$(TEST_VAR)"
