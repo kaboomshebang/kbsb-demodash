@@ -17,7 +17,7 @@ url_lambda = https://jchv4b5lpu5gea3lkowr5g2bei0tpnsl.lambda-url.eu-central-1.on
 
 # app:app refers to app.py app function
 api:
-	uvicorn --host 0.0.0.0 app:app --reload
+	export LOCAL=1 && uvicorn --host 0.0.0.0 app:app --reload
 
 pytest-local:
 	export TEST_URL="$(url_local)" && pytest -s -k test_endpoints
@@ -43,7 +43,7 @@ build:
 	docker build -t "$(image_name)" .
 
 run:
-	docker run --env-file .env -e LOG_LEVEL=DEBUG -p 9000:8080 "$(image_name)"
+	docker run --env-file .env -e LOG_LEVEL=DEBUG -e LOCAL=1 -p 9000:8080 "$(image_name)"
 
 shell:
 	docker run -it --entrypoint /bin/bash -p 9000:8080 "$(image_name)"

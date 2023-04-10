@@ -32,3 +32,5 @@ pip install -r requirements.txt
 http://100.111.214.8:8000/docs
 https://jchv4b5lpu5gea3lkowr5g2bei0tpnsl.lambda-url.eu-central-1.on.aws/docs
 ```
+
+> Set ENV VAR `LOCAL=1` in Lambda environment to test the production endpoint from a local dev. frontend.

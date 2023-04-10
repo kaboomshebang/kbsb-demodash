@@ -1,11 +1,12 @@
+import os
 from fastapi import FastAPI
 from mangum import Mangum
 from routes import new_todo, list_todos
 from fastapi.middleware.cors import CORSMiddleware
 
-origins = ["*"]
-
-#! set a variable so that the production origin is only demodash.kbsb.app
+# set CORS origin
+LOCAL = os.getenv("LOCAL")
+origins = ["*"] if LOCAL else ["https://demodash.kbsb.app"]
 
 app = FastAPI()
 app.add_middleware(
