@@ -97,7 +97,7 @@ First, setup all the necessary configuration.
 				"iam:PassRole",
 				"iam:CreateRole",
 				"iam:AttachRolePolicy",
-                "ecr:CreateRepository",
+				"ecr:CreateRepository",
 				"ecr:SetRepositoryPolicy",
 				"ecr:GetDownloadUrlForLayer",
 				"ecr:BatchGetImage",
