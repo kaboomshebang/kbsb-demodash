@@ -214,3 +214,4 @@ Update CI/CD
 	- fork the repository
 	- edit `.github/workflows/deploy.yml`
 	- set all the correct environment variables
+	- push to/merge with `main`
