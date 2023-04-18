@@ -1,4 +1,4 @@
-# Pytest Make config
-url_local=http://localhost:8000
-url_docker=http://localhost:9000/2015-03-31/functions/function/invocations
-url_lambda=https://XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.lambda-url.eu-central-1.on.aws
+# Pytest Make config variables
+PYTEST_URL_LOCAL=http://localhost:8000
+PYTEST_URL_DOCKER=http://localhost:9000/2015-03-31/functions/function/invocations
+PYTEST_URL_LAMBDA=https://XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.lambda-url.eu-central-1.on.aws

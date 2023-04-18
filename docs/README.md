@@ -326,5 +326,6 @@ Update CI/CD
 	- first follow all the above steps to create a manual deployment
 		- so that all the environment variables and policies are set
 	- edit `.github/workflows/deploy.yml`
-	- set all the correct environment variables
+		- set all the correct environment variables
+	- modify code
 	- push to/merge with `main`

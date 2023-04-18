@@ -6,6 +6,10 @@ include .make.pytest
 # all targets refer to tasks (instead of files)
 .PHONY: *
 
+# set Make variables
+ECR_DOMAIN := $(AWS_ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com
+
+
 ######## FASTAPI local development
 
 # app:app refers to app.py app function
@@ -13,28 +17,29 @@ api:
 	export LOCAL=1 && uvicorn --host 0.0.0.0 app:app --reload
 
 pytest-local:
-	export TEST_URL="$(url_local)" && pytest -s -k test_endpoints
+	export TEST_URL="$(PYTEST_URL_LOCAL)" && pytest -s -k test_endpoints
 # `pytest -s` includes stdout
 
 pytest-docker:
-	export TEST_URL="$(url_docker)"; export TEST_DOCKER=1 && pytest -s -k test_endpoints
+	export TEST_URL="$(PYTEST_URL_DOCKER)"; export TEST_DOCKER=1 && pytest -s -k test_endpoints
 
 pytest-prod:
-	export TEST_URL="$(url_lambda)" && pytest -s -k test_endpoints
+	export TEST_URL="$(PYTEST_URL_LAMBDA)" && pytest -s -k test_endpoints
 
 ######## AWS Authentication
 
 login:
 	aws sso login
 
+# aws ecr get-login-password --region $(AWS_region) | docker login --username AWS --password-stdin .dkr.ecr.eu-central-1.amazonaws.com
 auth:
-	aws ecr get-login-password --region "$(region)" | docker login --username AWS --password-stdin "$(ecr)"
+	aws ecr get-login-password --region $(AWS_REGION) | docker login --username AWS --password-stdin $(ECR_DOMAIN)
 
 repo:
 	aws ecr create-repository \
-		--repository-name "$(docker_repo)" \
+		--repository-name "$(ECR_DOCKER_REPO_NAME)" \
 		--image-scanning-configuration scanOnPush=true \
-		--region "$(region)"
+		--region "$(AWS_REGION)"
 
 iamrole:
 	aws iam create-role --role-name lambda-ex --assume-role-policy-document '{"Version": "2012-10-17","Statement": [{ "Effect": "Allow", "Principal": {"Service": "lambda.amazonaws.com"}, "Action": "sts:AssumeRole"}]}'
@@ -44,41 +49,41 @@ iamrole:
 ######## DOCKER tasks
 
 build:
-	docker build -t "$(image_name)" .
+	docker build -t "$(ECR_DOCKER_IMAGE_NAME)" .
 
 run:
-	docker run --env-file .env -e LOG_LEVEL=DEBUG -e LOCAL=1 -p 9000:8080 "$(image_name)"
+	docker run --env-file .env -e LOG_LEVEL=DEBUG -e LOCAL=1 -p 9000:8080 "$(ECR_DOCKER_IMAGE_NAME)"
 
 shell:
-	docker run -it --entrypoint /bin/bash -p 9000:8080 "$(image_name)"
+	docker run -it --entrypoint /bin/bash -p 9000:8080 "$(ECR_DOCKER_IMAGE_NAME)"
 
 logs:
-	docker logs "$(image_name)"
+	docker logs "$(ECR_DOCKER_IMAGE_NAME)"
 
 tag:
-	docker tag "$(image_name)" "$(ecr)"/"$(docker_repo)"
+	docker tag "$(ECR_DOCKER_IMAGE_NAME)" "$(ECR_DOMAIN)"/"$(ECR_DOCKER_REPO_NAME)"
 
 push:
-	docker push "$(ecr)"/"$(docker_repo)"
+	docker push "$(ECR_DOMAIN)"/"$(ECR_DOCKER_REPO_NAME)"
 
 ######## AWS tasks
 
 lambda-create:
 	aws lambda create-function \
-	--region "$(region)" \
-	--function-name "$(function_name)" \
+	--region "$(AWS_REGION)" \
+	--function-name "$(LAMBDA_FUNCTION_NAME)" \
     --package-type Image \
-    --code ImageUri="$(ecr)"/"$(docker_repo)":latest \
-    --role arn:aws:iam::$(arn):role/lambda-ex
+    --code ImageUri="$(ECR_DOMAIN)"/"$(ECR_DOCKER_REPO_NAME)":latest \
+    --role arn:aws:iam::$(AWS_ARN):role/lambda-ex
 
 lambda-url:
 	aws lambda create-function-url-config \
-	--function-name "$(function_name)" \
+	--function-name "$(LAMBDA_FUNCTION_NAME)" \
 	--auth-type NONE
 
 lambda-public:
 	aws lambda add-permission \
-    --function-name "$(function_name)" \
+    --function-name "$(LAMBDA_FUNCTION_NAME)" \
     --action lambda:invokeFunctionUrl \
     --statement-id FunctionURLAllowPublicAccess \
     --principal "*" \
@@ -86,17 +91,17 @@ lambda-public:
 
 lambda-update:
 	aws lambda update-function-code \
-	--region "$(region)" \
-	--function-name "$(function_name)" \
-    --image-uri "$(ecr)"/"$(docker_repo)":latest
+	--region "$(AWS_REGION)" \
+	--function-name "$(LAMBDA_FUNCTION_NAME)" \
+    --image-uri "$(ECR_DOMAIN)"/"$(ECR_DOCKER_REPO_NAME)":latest
 
 lambda-env:
 	aws lambda update-function-configuration \
-	--function-name "$(function_name)" \
+	--function-name "$(LAMBDA_FUNCTION_NAME)" \
 	--environment Variables={AIRTABLE_API_KEY="$(AIRTABLE_API_KEY)",AIRTABLE_BASE_ID="$(AIRTABLE_BASE_ID)",AIRTABLE_TABLE_NAME="$(AIRTABLE_TABLE_NAME)"}
 
 invoke:
-	aws lambda invoke --function-name "$(function_name)" output.json
+	aws lambda invoke --function-name "$(LAMBDA_FUNCTION_NAME)" output.json
 
 # run update to publish changes
 update: build tag push lambda-update

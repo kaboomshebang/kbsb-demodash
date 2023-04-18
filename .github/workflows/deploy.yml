@@ -5,14 +5,14 @@ on:
   push:
     branches:
     # - main
-    - fs-117-ci-cd # test CI/CD config
+    - fs-120-ci-cd-backend # test CI/CD config
 
 jobs:
   deploy-frontend:
     runs-on: ubuntu-latest
     env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      SCW_ACCESS_KEY_ID: ${{ secrets.SCW_ACCESS_KEY_ID }}
+      SCW_SECRET_ACCESS_KEY: ${{ secrets.SCW_SECRET_ACCESS_KEY }}
       CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
       CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
       RCLONE_SYNC_DIR: dist
@@ -29,12 +29,13 @@ jobs:
           node-version: '18'
       - name: Install `pnpm`
         run: npm install -g pnpm
+        working-directory: ./app
       - name: Install dependencies
         run: pnpm install
+        working-directory: ./app
       - name: Build frontend
         run: make build
-      - name: List dist folder
-        run: ls dist
+        working-directory: ./app
 
       # Upload to Scaleway
       - name: Install Rclone
@@ -51,12 +52,17 @@ jobs:
             echo "endpoint = s3.nl-ams.scw.cloud" >> rclone.conf
             echo "acl = private" >> rclone.conf
             echo "bucket_acl = private" >> rclone.conf
+        working-directory: ./app
       - name: Verify `rlcone.conf`
         run: cat rclone.conf
-      - name: Set bucket authentication
-        run: export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID && export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-      - name: Copy `dist` folder to Scaleway bucket
-        run: rclone sync --auto-confirm --config="rclone.conf" ./"$RCLONE_SYNC_DIR"/ "$RCLONE_REMOTE":"$RCLONE_BUCKET_NAME"
+        working-directory: ./app
+      - name: Rclone copy `dist` folder to Scaleway bucket
+        run: |
+          # Set bucket authentication (Rclone expects AWS_)
+          export AWS_ACCESS_KEY_ID=$SCW_ACCESS_KEY_ID
+          export AWS_SECRET_ACCESS_KEY=$SCW_SECRET_ACCESS_KEY
+          rclone sync --auto-confirm --config="rclone.conf" ./"$RCLONE_SYNC_DIR"/ "$RCLONE_REMOTE":"$RCLONE_BUCKET_NAME"
+        working-directory: ./app
 
       # Cloudflare cache
       - name: Purge Cloudflare cache
@@ -65,6 +71,19 @@ jobs:
 
   deploy-backend:
     runs-on: ubuntu-latest
+    env:
+      # .aws/.env vars
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      # .env vars
+      CORS_DOMAIN: ${{ vars.CORS_DOMAIN }}
+      # make.docker vars
+      AWS_ARN: ${{ vars.AWS_ACCOUNT_ID }}
+      AWS_ACCOUNT_ID: ${{ vars.AWS_ACCOUNT_ID }}
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      LAMBDA_FUNCTION_NAME: ${{ vars.LAMBDA_FUNCTION_NAME }}
+      ECR_DOCKER_REPO_NAME: ${{ vars.ECR_DOCKER_REPO_NAME }}
+      ECR_DOCKER_IMAGE_NAME: ${{ vars.ECR_DOCKER_IMAGE_NAME }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -72,5 +91,35 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-      - run: python --version
-      - run: make --version
+
+      - name: Create `.aws` credentials file
+        run: |
+          echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" > .env
+          echo "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" >> .env
+        working-directory: ./lambdas/todos/.aws
+
+      - name: Create `.env` file
+        run: |
+          echo "CORS_DOMAIN=$CORS_DOMAIN" > .env
+          # set the Airtable environment variables manually
+        working-directory: ./lambdas/todos
+
+      - name: Create `.make.docker` config file
+        run: |
+          echo "ECR_DOCKER_REPO_NAME=$ECR_DOCKER_REPO_NAME" > .make.docker
+          echo "ECR_DOCKER_IMAGE_NAME=$ECR_DOCKER_IMAGE_NAME" >> .make.docker
+          echo "LAMBDA_FUNCTION_NAME=$LAMBDA_FUNCTION_NAME" >> .make.docker
+          echo "AWS_REGION=$AWS_REGION" >> .make.docker
+          echo "AWS_ACCOUNT_ID=$AWS_ACCOUNT_ID" >> .make.docker
+          echo "AWS_ARN=$AWS_ACCOUNT_ID" >> .make.docker
+        working-directory: ./lambdas/todos
+
+      - name: Login to ECR Docker registry
+        run: |
+          make auth
+        working-directory: ./lambdas/todos
+
+      - name: Push changes and update function
+        run: |
+          make update
+        working-directory: ./lambdas/todos

@@ -1,7 +1,7 @@
-# Docker Make config
-region=eu-central-1
-ecr=aws_account_id.dkr.ecr.region.amazonaws.com
-docker_repo=kbsb-demodash
-image_name=kbsb-demodash-todos
-function_name=todos
-arn=100000000000
+# Docker Make config variables
+ECR_DOCKER_REPO_NAME=kbsb-demodash
+ECR_DOCKER_IMAGE_NAME=kbsb-demodash-todos
+LAMBDA_FUNCTION_NAME=todos
+AWS_REGION=eu-central-1
+AWS_ACCOUNT_ID=100000000000
+AWS_ARN=100000000000
