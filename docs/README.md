@@ -3,7 +3,8 @@
 How to reproduce this project.
 
 
-## Git repo
+
+Git repo
 -----------------------------------------------
 
 ```sh
@@ -12,7 +13,8 @@ git clone git@github.com:kaboomshebang/kbsb-demodash.git
 ```
 
 
-## Prerequisites
+
+Prerequisites
 -----------------------------------------------
 
 - Docker
@@ -37,7 +39,8 @@ nix-env -iA \
 > Optional: use the Nix package manager with `direnv` for an automated dev. environment.
 
 
-## Project settings
+
+Project settings
 -----------------------------------------------
 
 - Airtable
@@ -53,8 +56,6 @@ nix-env -iA \
 	- create a `.env` file in `lambdas/todos/`
 		- refer to the `.env.example` for more info
 	- create a shared view link and copy the url
-
------------------------------------------------
 
 > optional: create a new AWS account with `AWS Organizations` 
 
@@ -90,7 +91,7 @@ nix-env -iA \
 
 
 
-## Local development
+Local development
 -----------------------------------------------
 
 ### Backend
@@ -122,14 +123,15 @@ make dev
 > Verify the endpoint with the todo widget.
 
 
-## Deploy to production
+
+Deploy to production
 -----------------------------------------------
 
 > Make sure Docker is installed
 
 ### Create a private AWS ECR container repository
 
-config `lambdas/todos/.env.make.docker`:
+- config `lambdas/todos/.env.make.docker`:
 	- set `region`
 	- set `docker-repo` (or use default value)
 	- set `image_name` (or use default value)
@@ -140,7 +142,7 @@ make repo
 # save the output
 ```
 
-config `lambdas/todos/.env.make.docker`:
+- config `lambdas/todos/.env.make.docker`:
 	- set `ecr` value to the output of the make command 
 	- `aws_account_id.dkr.ecr.region.amazonaws.com`
 
@@ -161,7 +163,7 @@ make pytest-docker
 
 - [ ] How can you find the Lambda URL with AWS CLI
 
-Copy paste the function endpoint url and set the `url_lambda` value in:
+- Copy paste the function endpoint url and set the `url_lambda` value in:
 	- `lambdas/todos/.env.make.pytest` for the backend
 	- and `.env.production` for the frontend
 
@@ -180,7 +182,6 @@ make pytest-prod
 
 
 ### Deploy frontend to production
------------------------------------------------
 
 Test the build process.
 
@@ -205,10 +206,11 @@ make preview
 You can use Rclone to automate the synchronization with S3.
 
 
-## Update CI/CD
+
+Update CI/CD
 -----------------------------------------------
 
-Automate the prodcution with Github Actions:
+- Automate the prodcution with Github Actions:
 	- fork the repository
 	- edit `.github/workflows/deploy.yml`
 	- set all the correct environment variables
