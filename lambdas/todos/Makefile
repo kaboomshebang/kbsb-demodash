@@ -28,6 +28,12 @@ login:
 auth:
 	aws ecr get-login-password --region "$(region)" | docker login --username AWS --password-stdin "$(ecr)"
 
+repo:
+	aws ecr create-repository \
+		--repository-name "$(docker_repo)" \
+		--image-scanning-configuration scanOnPush=true \
+		--region "$(region)"
+
 ######## DOCKER tasks
 
 build:
