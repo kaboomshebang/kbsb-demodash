@@ -4,3 +4,4 @@ ecr=aws_account_id.dkr.ecr.region.amazonaws.com
 docker_repo=kbsb-demodash
 image_name=kbsb-demodash-todos
 function_name=todos
+arn=100000000000
