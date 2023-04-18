@@ -27,6 +27,7 @@ The project depends on the following packages.
 	- `pip`
 - Node (18.15.0)
 	- `pnpm`
+- GNU Make
 - AWS CLI v2
 - Rclone (optional)
 
