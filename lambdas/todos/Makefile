@@ -1,6 +1,8 @@
 # include environment variables in every sub-shell
+include .env
 include .aws/.env
-include .env.make
+include .make.docker
+include .make.pytest
 # all targets refer to tasks (instead of files)
 .PHONY: *
 
