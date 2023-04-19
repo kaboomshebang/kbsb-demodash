@@ -81,6 +81,9 @@ lambda-url:
 	--function-name "$(LAMBDA_FUNCTION_NAME)" \
 	--auth-type NONE
 
+lambda-get-url:
+	aws lambda get-function-url-config --function-name "$(LAMBDA_FUNCTION_NAME)"
+
 lambda-public:
 	aws lambda add-permission \
     --function-name "$(LAMBDA_FUNCTION_NAME)" \

@@ -89,6 +89,9 @@ First, setup all the necessary configuration.
             "Effect": "Allow",
             "Action": [
 				"lambda:UpdateFunctionCode",
+				"lambda:GetFunction",
+				"lambda:GetFunctionConfiguration",
+				"lambda:GetFunctionUrlConfig",
 				"lambda:InvokeFunction",
 				"lambda:CreateFunction",
 				"lambda:CreateFunctionUrlConfig",
@@ -285,7 +288,16 @@ make pytest-prod
 
 Last step, deploy the React app to a S3 bucket. First, test the build process.
 
-> Remember to set the correct endpoint in `app/.env.production` and `lambdas/todos/.env`
+```sh
+# get the function URL
+aws lambda get-function-url-config --function-name <your_function_name>
+# or,
+make lambda-get-url
+```
+
+> Remember to set the correct endpoint in `app/.env.production`
+
+> Currently, in the frontend, the VITE URL has to end with `/new_todo`
 
 ```sh
 # from the frontend directory
@@ -322,5 +334,6 @@ Update CI/CD
 		- so that all the environment variables and policies are set
 	- edit `.github/workflows/deploy.yml`
 		- set all the correct environment variables
+		- set all the correct variables in Github Actions
 	- modify code
-	- push to/merge with `main`
+	- push to or merge with `main`
