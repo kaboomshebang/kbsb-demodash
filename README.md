@@ -40,11 +40,11 @@ Built with
 Retrospective
 -----------------------------------------------
 
-- Creating a automated deployment from scratch takes a lot of time
+- Creating an automated deployment from scratch takes time
     - Lots of variable configuration and loads of AWS CLI commands
     - Finding the right IAM-policies/actions can be cumbersome
-        - many errors like: no identity-based policy allow the "service:GetSomeKindOff" action
-    - Issue/Bug with double CORS config (Lambda CORS config + FastAPI CORS)
+        - many errors like: no identity-based policy allow the "service:GetSomeBlaBlaEtc" action
+    - Issue/bug due to double CORS config (Lambda CORS config + FastAPI CORS)
     - Functions/containers can be a bit difficult to debug
         - Local dev server is a different config in comparison to deployment
         - Difference between the local development and production HTTP request format
@@ -52,12 +52,12 @@ Retrospective
 
 > A framework like Serverless or AWS SAM CLI could make all of the above easier
 
-- Head scratcher 🤯: hours of time wasted on a dumb Github Actions config issue.
-    - config used an incorrect URL (missed a parameter in the URL)
+- Head scratcher: hours of time wasted on a dumb Github Actions config issue.
+    - set wrong config; used an incorrect URL (missed a parameter in the URL) 🤯
         - in hindsight the error messages actually made sense
             - debugging in the wrong place `===` lots of trial and **error**
             - while debugging accidentally used the wrong context in Github Actions
-                - `var` instead of `vars`
+                - `var` instead of `vars` 🤯
         - [ ] note to self: next time follow a good debug strategy
 
 
