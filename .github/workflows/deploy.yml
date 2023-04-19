@@ -17,9 +17,18 @@ jobs:
       RCLONE_SYNC_DIR: dist
       RCLONE_REMOTE: scw
       RCLONE_BUCKET_NAME: demodash.kbsb.app
+      VITE_ENDPOINT: ${{ vars.VITE_ENDPOINT }}
+      VITE_AIRTABLE_BASE: ${{ vars.VITE_AIRTABLE_BASE}}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
+
+      # env
+      - name: create `.env` and `.env.production`
+        run: |
+          echo "VITE_AIRTABLE_BASE=$VITE_AIRTABLE_BASE" > .env
+          echo "VITE_ENDPOINT=$VITE_ENDPOINT" > .env.production
+        working-directory: ./app
 
       # Build the Node project
       - name: Install Node

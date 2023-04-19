@@ -127,13 +127,13 @@ Make sure that the key works:
 source lambdas/todos/.aws/.env && aws sts get-caller-identity
 ```
 
-- frontend `.env.development`
+- frontend `app/.env.development`
 	- set the `VITE_ENDPOINT`
 		- for example: `http://localhost:8000/new_todo`
 		- **or replace `localhost` with your vm/devserver ip**
 	- set the `VITE_AIRTABLE_BASE`
 		- copy-paste the Airtable shared view URL
-- frontend `env.production`
+- frontend `app/.env.production`
 	- > set the production environment later in this guide
 
 - CORS domain
@@ -141,7 +141,7 @@ source lambdas/todos/.aws/.env && aws sts get-caller-identity
 		- set `CORS_DOMAIN` in `lambdas/todos/.env`
 
 - Pytest config
-	- set `url_local` in `lambdas/todos/.make.pytest`
+	- set `PYTEST_URL_LOCAL` in `lambdas/todos/.make.pytest`
 		- default: `http://localhost:8000`
 
 > The project is now ready for local testing without Docker
@@ -195,20 +195,18 @@ Deploy to production
 We need to store the Docker container image in AWS. Let's create a repository.
 
 - config `lambdas/todos/.make.docker`:
-	- set `region`
-	- set `docker-repo` (or use default value)
-	- set `image_name` (or use default value)
-	- set `ecr` after the following command
+	- set `AWS_ARN`
+	- set `AWS_REGION`
+	- set `AWS_ACCOUNT_ID` (same as ARN)
+	- set `ECR_DOCKER_REPO_NAME` (or use default value)
+	- set `ECR_DOCKER_IMAGE_NAME` (or use default value)
+
+> You can find your Arn/AccountId with `aws sts get-caller-identity`
 
 ```sh
 # create ECR repository
 make repo
 ```
-
-- copy the value of `reposityUri` without the repo
-	- `aws_account_id.dkr.ecr.region.amazonaws.com`
-- edit `lambdas/todos/.make.docker`:
-	- and set the value to the `ecr` variable
 
 [AWS Docs](https://docs.aws.amazon.com/AmazonECR/latest/userguide/getting-started-cli.html#cli-create-repository)
 
@@ -242,9 +240,6 @@ We need a role for the Lambda execution.
 make iamrole
 ```
 
-Copy the 12-digit id of the `Arn` role
-- set the value to the `arn` variable in `lambdas/todos/.make.docker`
-
 #### Create the Lambda function
 
 Before we can deploy the image/container we need to create the function.
@@ -274,9 +269,9 @@ make auth
 make update
 ```
 
-- Copy the `FunctionUrl` and set the value to the `url_lambda` variable in:
+- Copy the `FunctionUrl` and set the value to the `PYTEST_URL_LAMBDA` variable in:
 	- `lambdas/todos/.make.pytest` for the backend
-	- and `.env.production` for the frontend
+	- and `app/.env.production` for the frontend
 
 ```sh
 # test production endpoint
@@ -290,7 +285,7 @@ make pytest-prod
 
 Last step, deploy the React app to a S3 bucket. First, test the build process.
 
-> Remember to set the correct endpoint in `.env.production` and `lambdas/todos/.env`
+> Remember to set the correct endpoint in `app/.env.production` and `lambdas/todos/.env`
 
 ```sh
 # from the frontend directory
