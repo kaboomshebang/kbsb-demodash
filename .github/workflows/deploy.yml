@@ -4,8 +4,7 @@ run-name: Deploying kbsb-demodash (${{ github.actor }}).
 on:
   push:
     branches:
-    # - main
-    - fs-120-ci-cd-backend # test CI/CD config
+    - main
 
 jobs:
   deploy-frontend:
@@ -114,11 +113,11 @@ jobs:
           echo "AWS_ARN=$AWS_ACCOUNT_ID" >> .make.docker
         working-directory: ./lambdas/todos
 
+      # run Makefiles
       - name: Login to ECR Docker registry
         run: |
           make auth
         working-directory: ./lambdas/todos
-
       - name: Push changes and update function
         run: |
           make update
