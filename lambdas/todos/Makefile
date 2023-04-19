@@ -101,7 +101,7 @@ lambda-update:
 lambda-env:
 	aws lambda update-function-configuration \
 	--function-name "$(LAMBDA_FUNCTION_NAME)" \
-	--environment Variables={AIRTABLE_API_KEY="$(AIRTABLE_API_KEY)",AIRTABLE_BASE_ID="$(AIRTABLE_BASE_ID)",AIRTABLE_TABLE_NAME="$(AIRTABLE_TABLE_NAME)"}
+	--environment Variables={CORS_DOMAIN="$(CORS_DOMAIN)",AIRTABLE_API_KEY="$(AIRTABLE_API_KEY)",AIRTABLE_BASE_ID="$(AIRTABLE_BASE_ID)",AIRTABLE_TABLE_NAME="$(AIRTABLE_TABLE_NAME)"}
 
 invoke:
 	aws lambda invoke --function-name "$(LAMBDA_FUNCTION_NAME)" output.json
